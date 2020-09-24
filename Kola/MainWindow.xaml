@@ -10,6 +10,6 @@
     <DockPanel>
         <controls:PageChanger DockPanel.Dock="Right" Width="200" ArrowDirection="Right" />
         <controls:PageChanger DockPanel.Dock="Left" Width="200" ArrowDirection="Left" />
-        <Image />
+        <Image ScrollViewer.VerticalScrollBarVisibility="Disabled" />
     </DockPanel>
 </Window>
