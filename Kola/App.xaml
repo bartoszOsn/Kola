@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:Kola"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="PrimaryColor" Color="#FFD9E6F7"/>
+            <SolidColorBrush x:Key="SecondaryColor" Color="#FF777777"/>
+            <SolidColorBrush x:Key="BackgroundColor" Color="#252525"/>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
