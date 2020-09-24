@@ -9,11 +9,17 @@ namespace Kola.Model
 {
     abstract class ComicBook
     {
-        public string Name { get; set; }
+        public ComicBook(string path)
+        {
+            Path = path;
+        }
+        public string Path { get; protected set; }
         public abstract int PageNumber { get; set; }
         public abstract int PageCount { get; }
-        public abstract ImageSource Page { get; }
+        public abstract ImageSource PageImage { get; }
 
+
+        public abstract void Close();
         public void NextPage()
         {
             PageNumber++;
