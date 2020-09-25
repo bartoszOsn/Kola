@@ -80,7 +80,11 @@ namespace Kola
             KeyGesture nextGesture = new KeyGesture(Key.Right);
             KeyGesture PrevGesture = new KeyGesture(Key.Left);
 
-            InputBindings.Add(new InputBinding(new RoutedCommand()))
+            LambdaCommand nextCommand = new LambdaCommand(t => NextPage());
+            LambdaCommand prevCommand = new LambdaCommand(t => PreviousPage());
+
+            InputBindings.Add(new InputBinding(nextCommand ,nextGesture));
+            InputBindings.Add(new InputBinding(prevCommand ,PrevGesture));
         }
     }
 }
