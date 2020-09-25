@@ -33,6 +33,7 @@ namespace Kola
         {
             Model = model;
             InitializeComponent();
+            InitKeyboardGestures();
         }
 
         private Model.Model model;
@@ -57,12 +58,29 @@ namespace Kola
 
         private void RightPageChanger_Click(object sender, MouseButtonEventArgs e)
         {
-            Model.SelectedTab?.NextPage();
+            NextPage();
         }
 
         private void LeftPageChanger_Click(object sender, MouseButtonEventArgs e)
         {
+            PreviousPage();
+        }
+
+        private void NextPage()
+        {
+            Model.SelectedTab?.NextPage();
+        }
+        private void PreviousPage()
+        {
             Model.SelectedTab?.PreviousPage();
+        }
+
+        private void InitKeyboardGestures()
+        {
+            KeyGesture nextGesture = new KeyGesture(Key.Right);
+            KeyGesture PrevGesture = new KeyGesture(Key.Left);
+
+            InputBindings.Add(new InputBinding(new RoutedCommand()))
         }
     }
 }
