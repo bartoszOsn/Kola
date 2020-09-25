@@ -57,12 +57,12 @@ namespace Kola
 
         private void RightPageChanger_Click(object sender, MouseButtonEventArgs e)
         {
-            Model.SelectedTab.NextPage();
+            Model.SelectedTab?.NextPage();
         }
 
         private void LeftPageChanger_Click(object sender, MouseButtonEventArgs e)
         {
-            Model.SelectedTab.PreviousPage();
+            Model.SelectedTab?.PreviousPage();
         }
     }
 }

@@ -28,7 +28,18 @@ namespace Kola.Model
             }
             set
             {
-                pageNumber = value % PageCount;
+                if (value < 0)
+                {
+                    pageNumber = 0;
+                }
+                else if(value >= PageCount)
+                {
+                    pageNumber = PageCount - 1;
+                }
+                else
+                {
+                    pageNumber = value;
+                }
                 GenerateImage();
                 Changed(nameof(PageNumber));
                 Changed(nameof(PageImage));
