@@ -8,6 +8,9 @@
             <SolidColorBrush x:Key="PrimaryColor" Color="#FFD9E6F7"/>
             <SolidColorBrush x:Key="SecondaryColor" Color="#FF777777"/>
             <SolidColorBrush x:Key="BackgroundColor" Color="#252525"/>
+            <SolidColorBrush x:Key="PrimaryColorVariant" Color="#FF95C2FC"/>
+            <SolidColorBrush x:Key="SecondaryColorVariant" Color="#FFB6B6B6"/>
+            <SolidColorBrush x:Key="BackgroundColorVariant" Color="#FF525252"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -8,18 +8,44 @@
              x:Name="Control"
              d:DesignHeight="50" d:DesignWidth="800"
              Background="{StaticResource SecondaryColor}">
+    <UserControl.Resources>
+        <local:StringArrayConverter x:Key="strConverter" />
+    </UserControl.Resources>
     <DockPanel LastChildFill="False">
         <DockPanel.Resources>
-            <Style TargetType="Button">
-                <Setter Property="Background" Value="{StaticResource BackgroundColor}" />
+            <Style TargetType="Button" x:Key="btnStyle">
+                <Setter Property="Background" Value="{StaticResource BackgroundColorVariant}" />
                 <Setter Property="Foreground" Value="{StaticResource PrimaryColor}" />
                 <Setter Property="Margin" Value="1, 4, 1, 0" />
                 <Setter Property="Padding" Value="5" />
-                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" BorderThickness="0">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="true">
+                        <Trigger.Setters>
+                            <Setter Property="Foreground" Value="{StaticResource PrimaryColorVariant}" />
+                            <Setter Property="Margin" Value="1, 2, 1, 0" />
+                        </Trigger.Setters>
+                    </Trigger>
+                </Style.Triggers>
             </Style>
         </DockPanel.Resources>
-        <Button DockPanel.Dock="Right">*</Button>
-        <ItemsControl ItemsSource="{Binding ElementName=Control, Path=TabNames}">
+        <Button DockPanel.Dock="Right" Style="{StaticResource btnStyle}">*</Button>
+        <ItemsControl>
+            <ItemsControl.ItemsSource>
+                <MultiBinding Converter="{StaticResource strConverter}">
+                    <Binding Path="TabNames" ElementName="Control" />
+                    <Binding Path="SelectedIndex" ElementName="Control" />
+                </MultiBinding>
+            </ItemsControl.ItemsSource>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
@@ -27,10 +53,38 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Content="{Binding}" />
+                    <Button>
+                        <Button.Style>
+                            <Style BasedOn="{StaticResource btnStyle}" TargetType="Button">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Selected}" Value="true">
+                                        <Setter Property="Background" Value="{StaticResource BackgroundColor}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Content>
+                            <DockPanel>
+                                <TextBlock DockPanel.Dock="Right" Margin="5, 0, 0, 0" MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" TextAlignment="Center" >
+                                    <TextBlock.Text>×</TextBlock.Text>
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="true">
+                                                    <Setter Property="Background" Value="{StaticResource PrimaryColorVariant}" />
+                                                    <Setter Property="Foreground" Value="{StaticResource BackgroundColor}" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <TextBlock Text="{Binding Text}" />
+                            </DockPanel>
+                        </Button.Content>
+                    </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <Button>+</Button>
+        <Button Style="{StaticResource btnStyle}">+</Button>
     </DockPanel>
 </UserControl>
