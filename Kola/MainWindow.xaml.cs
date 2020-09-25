@@ -20,9 +20,39 @@ namespace Kola
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public Model.Model Model
         {
+            get => model;
+            set
+            {
+                model = value;
+                DataContext = value;
+            }
+        }
+        public MainWindow(Model.Model model)
+        {
+            Model = model;
             InitializeComponent();
+        }
+
+        private Model.Model model;
+
+        private void Tabs_OnNewTab(object sender, EventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.Multiselect = true;
+            dialog.ShowDialog(this);
+            Model.Add(dialog.FileNames);
+        }
+
+        private void Tabs_OnCloseTab(object sender, Controls.TabEventArgs e)
+        {
+            Model.Close(e.Index);
+        }
+
+        private void Tabs_OnSelectTab(object sender, Controls.TabEventArgs e)
+        {
+            Model.SelectedTabIndex = e.Index;
         }
     }
 }

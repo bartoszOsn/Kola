@@ -4,13 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kola"
+        xmlns:model="clr-namespace:Kola.Model"
         xmlns:controls="clr-namespace:Kola.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Background="{DynamicResource BackgroundColor}">
+    <Window.Resources>
+        <model:ComicBookArrayToStringArrayConverter x:Key="ComicBookArrToStrConv" />
+    </Window.Resources>
     <DockPanel>
-        <controls:Tabs DockPanel.Dock="Top" />
+        <controls:Tabs
+            DockPanel.Dock="Top"
+            TabNames="{Binding Tabs, Converter={StaticResource ComicBookArrToStrConv}}"
+            SelectedIndex="{Binding SelectedTabIndex}"
+            OnNewTab="Tabs_OnNewTab"
+            OnCloseTab="Tabs_OnCloseTab"
+            OnSelectTab="Tabs_OnSelectTab"
+            />
         <controls:PageChanger DockPanel.Dock="Right" Width="200" ArrowDirection="Right" />
         <controls:PageChanger DockPanel.Dock="Left" Width="200" ArrowDirection="Left" />
-        <Image ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+        <Image
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            Source="{Binding SelectedTab.PageImage}"
+            />
     </DockPanel>
 </Window>

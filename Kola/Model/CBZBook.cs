@@ -17,6 +17,7 @@ namespace Kola.Model
         {
             zip = new ZipArchive(File.OpenRead(path), ZipArchiveMode.Read, false);
             FilterEntries();
+            PageNumber = 0;
         }
 
         public override int PageNumber
@@ -74,12 +75,20 @@ namespace Kola.Model
             BitmapImage image = new BitmapImage();
             Stream imgStream = imageEntries[PageNumber].Open();
             image.BeginInit();
-            image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
             image.CacheOption = BitmapCacheOption.OnLoad;
+            image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+            
             image.UriSource = null;
-            image.StreamSource = imgStream;
-            image.EndInit();
-            image.Freeze();
+
+            using(MemoryStream ms = new MemoryStream())
+            {
+                imgStream.CopyTo(ms, (int)imageEntries[PageNumber].Length);
+                ms.Position = 0;
+                image.StreamSource = ms;
+                image.EndInit();
+            }
+            
+            //image.Freeze();
             imgStream.Dispose();
             pageImage = image;
         }

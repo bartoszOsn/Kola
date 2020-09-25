@@ -120,7 +120,7 @@ namespace Kola.Controls
 
         private void Close_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Button btn = (Button)sender;
+            FrameworkElement btn = (FrameworkElement)sender;
             StringEntry entry = (StringEntry)btn.DataContext;
 
             OnCloseTab?.Invoke(this, new TabEventArgs() { Index = entry.Index });

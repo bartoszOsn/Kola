@@ -9,11 +9,15 @@ using System.Threading.Tasks;
 
 namespace Kola.Model
 {
-    class Model : INotifyPropertyChanged
+    public class Model : INotifyPropertyChanged
     {
         public Model()
         {
             Tabs = new ObservableCollection<ComicBook>();
+
+            //Tabs don't get notified of collection changing because of converter. It musst be notified manually.
+            Tabs.CollectionChanged += (s, e) => Changed(nameof(Tabs));
+            selectedTabIndex = -1;
         }
         public ObservableCollection<ComicBook> Tabs { get; private set; }
         public int SelectedTabIndex
@@ -33,7 +37,7 @@ namespace Kola.Model
         {
             get
             {
-                return Tabs[SelectedTabIndex];
+                return Tabs.ElementAtOrDefault(SelectedTabIndex);
             }
             set
             {
@@ -60,10 +64,27 @@ namespace Kola.Model
                 SelectedTabIndex = 0;
             }
         }
+
+        public void Add(string[] paths)
+        {
+            foreach(string path in paths)
+            {
+                Add(path);
+            }
+        }
         public void Close(int index)
         {
             Tabs[index].Close();
             Tabs.RemoveAt(index);
+            if(index < SelectedTabIndex)
+            {
+                SelectedTabIndex--;
+            }
+            if(index == SelectedTabIndex)
+            {
+                //Trigger INotifyPropertyChanged
+                SelectedTabIndex = SelectedTabIndex;
+            }
         }
 
         private int selectedTabIndex;

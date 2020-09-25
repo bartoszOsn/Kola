@@ -7,13 +7,14 @@ using System.Windows.Media;
 
 namespace Kola.Model
 {
-    abstract class ComicBook
+    public abstract class ComicBook
     {
         public ComicBook(string path)
         {
             Path = path;
         }
         public string Path { get; protected set; }
+        public string Name { get => System.IO.Path.GetFileName(Path); }
         public abstract int PageNumber { get; set; }
         public abstract int PageCount { get; }
         public abstract ImageSource PageImage { get; }
