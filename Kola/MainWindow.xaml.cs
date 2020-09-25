@@ -54,5 +54,15 @@ namespace Kola
         {
             Model.SelectedTabIndex = e.Index;
         }
+
+        private void RightPageChanger_Click(object sender, MouseButtonEventArgs e)
+        {
+            Model.SelectedTab.NextPage();
+        }
+
+        private void LeftPageChanger_Click(object sender, MouseButtonEventArgs e)
+        {
+            Model.SelectedTab.PreviousPage();
+        }
     }
 }

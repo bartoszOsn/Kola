@@ -88,7 +88,7 @@ namespace Kola.Model
                 image.EndInit();
             }
             
-            //image.Freeze();
+            image.Freeze();
             imgStream.Dispose();
             pageImage = image;
         }

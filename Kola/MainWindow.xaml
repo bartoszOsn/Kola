@@ -20,8 +20,8 @@
             OnCloseTab="Tabs_OnCloseTab"
             OnSelectTab="Tabs_OnSelectTab"
             />
-        <controls:PageChanger DockPanel.Dock="Right" Width="200" ArrowDirection="Right" />
-        <controls:PageChanger DockPanel.Dock="Left" Width="200" ArrowDirection="Left" />
+        <controls:PageChanger DockPanel.Dock="Right" Width="200" ArrowDirection="Right" Click="RightPageChanger_Click" />
+        <controls:PageChanger DockPanel.Dock="Left" Width="200" ArrowDirection="Left" Click="LeftPageChanger_Click" />
         <Image
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
             Source="{Binding SelectedTab.PageImage}"
