@@ -38,7 +38,7 @@
                 </Style.Triggers>
             </Style>
         </DockPanel.Resources>
-        <Button DockPanel.Dock="Right" Style="{StaticResource btnStyle}">*</Button>
+        <Button DockPanel.Dock="Right" Style="{StaticResource btnStyle}" Click="Settings_Button_Click">*</Button>
         <ItemsControl>
             <ItemsControl.ItemsSource>
                 <MultiBinding Converter="{StaticResource strConverter}">
@@ -53,7 +53,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button>
+                    <Button Click="Tab_Click">
                         <Button.Style>
                             <Style BasedOn="{StaticResource btnStyle}" TargetType="Button">
                                 <Style.Triggers>
@@ -65,7 +65,7 @@
                         </Button.Style>
                         <Button.Content>
                             <DockPanel>
-                                <TextBlock DockPanel.Dock="Right" Margin="5, 0, 0, 0" MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" TextAlignment="Center" >
+                                <TextBlock MouseDown="Close_MouseDown" DockPanel.Dock="Right" Margin="5, 0, 0, 0" MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" TextAlignment="Center" >
                                     <TextBlock.Text>×</TextBlock.Text>
                                     <TextBlock.Style>
                                         <Style TargetType="TextBlock">
@@ -85,6 +85,6 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <Button Style="{StaticResource btnStyle}">+</Button>
+        <Button Style="{StaticResource btnStyle}" Click="Add_Button_Click">+</Button>
     </DockPanel>
 </UserControl>
