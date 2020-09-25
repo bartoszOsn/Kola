@@ -20,6 +20,7 @@
             OnCloseTab="Tabs_OnCloseTab"
             OnSelectTab="Tabs_OnSelectTab"
             />
+        <controls:Tracker DockPanel.Dock="Bottom" CurrentValue="{Binding SelectedTab.PageNumber}" MaxValue="{Binding SelectedTab.PageCount}" />
         <controls:PageChanger DockPanel.Dock="Right" Width="200" ArrowDirection="Right" Click="RightPageChanger_Click" />
         <controls:PageChanger DockPanel.Dock="Left" Width="200" ArrowDirection="Left" Click="LeftPageChanger_Click" />
         <Image
