@@ -43,12 +43,17 @@ namespace Kola.Controls
     }
 
     /// <summary>
-    /// Interaction logic for Tabs.xaml
+    /// Strip with selectable tab cards and buttons for adding new cards and opening settings.
     /// </summary>
+    /// <remarks>
+    /// It provides no logic. All logic is handled via events.
+    /// </remarks>
     public partial class Tabs : UserControl
     {
 
-
+        /// <summary>
+        /// Array with titles for cards.
+        /// </summary>
         public IEnumerable<string> TabNames
         {
             get { return (IEnumerable<string>)GetValue(TabNamesProperty); }
@@ -57,10 +62,12 @@ namespace Kola.Controls
 
         // Using a DependencyProperty as the backing store for TabNames.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TabNamesProperty =
-            DependencyProperty.Register("TabNames", typeof(IEnumerable<string>), typeof(Tabs), new PropertyMetadata(new string[] { "Hellblazer #341", "IZombie #1"}));
+            DependencyProperty.Register("TabNames", typeof(IEnumerable<string>), typeof(Tabs), new PropertyMetadata(new string[0]));
 
 
-
+        /// <summary>
+        /// Index of card that is currently selected.
+        /// </summary>
         public int SelectedIndex
         {
             get { return (int)GetValue(SelectedIndexProperty); }
@@ -69,11 +76,23 @@ namespace Kola.Controls
 
         // Using a DependencyProperty as the backing store for SelectedIndex.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedIndexProperty =
-            DependencyProperty.Register("SelectedIndex", typeof(int), typeof(Tabs), new PropertyMetadata(1));
+            DependencyProperty.Register("SelectedIndex", typeof(int), typeof(Tabs), new PropertyMetadata(-1));
 
+        /// <summary>
+        /// Event fired when user click on card to select it.
+        /// </summary>
         public event EventHandler<TabEventArgs> OnSelectTab;
+        /// <summary>
+        /// Event fired when user wants to close the card and clicks "X" sign
+        /// </summary>
         public event EventHandler<TabEventArgs> OnCloseTab;
+        /// <summary>
+        /// Event fired when user clicks new card button
+        /// </summary>
         public event EventHandler<EventArgs> OnNewTab;
+        /// <summary>
+        /// Event fired when user clicks settings button
+        /// </summary>
         public event EventHandler<EventArgs> OnSettings;
 
         public Tabs()

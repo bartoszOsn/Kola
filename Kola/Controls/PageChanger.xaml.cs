@@ -20,12 +20,18 @@ namespace Kola.Controls
     /// </summary>
     public partial class PageChanger : UserControl
     {
+        /// <summary>
+        /// Enum for direction that arrow points in.
+        /// </summary>
         public enum Direction { Left, Right}
         public PageChanger()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Direction that arrow points in.
+        /// </summary>
         public Direction ArrowDirection
         {
             get => (Direction)GetValue(ArrowDirectionProperty);
@@ -34,5 +40,15 @@ namespace Kola.Controls
 
         public static readonly DependencyProperty ArrowDirectionProperty =
             DependencyProperty.Register(nameof(ArrowDirection), typeof(Direction), typeof(PageChanger), new PropertyMetadata(Direction.Left));
+
+        /// <summary>
+        /// Event fired when user click on this component.
+        /// </summary>
+        public event MouseButtonEventHandler Click;
+
+        private void Control_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Click?.Invoke(this, new MouseButtonEventArgs(e.MouseDevice, e.Timestamp, e.ChangedButton));
+        }
     }
 }
