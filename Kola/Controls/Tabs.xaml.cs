@@ -20,6 +20,19 @@ namespace Kola.Controls
     /// </summary>
     public partial class Tabs : UserControl
     {
+
+
+        public IEnumerable<string> TabNames
+        {
+            get { return (IEnumerable<string>)GetValue(TabNamesProperty); }
+            set { SetValue(TabNamesProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for TabNames.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TabNamesProperty =
+            DependencyProperty.Register("TabNames", typeof(IEnumerable<string>), typeof(Tabs), new PropertyMetadata(new string[] { "Hellblazer #341", "IZombie #1"}));
+
+
         public Tabs()
         {
             InitializeComponent();
