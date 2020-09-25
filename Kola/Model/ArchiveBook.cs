@@ -11,11 +11,11 @@ using System.Windows.Media.Imaging;
 
 namespace Kola.Model
 {
-    class CBZBook : ComicBook, INotifyPropertyChanged
+    class ArchiveBook : ComicBook, INotifyPropertyChanged
     {
-        public CBZBook(string path) : base(path)
+        public ArchiveBook(string path) : base(path)
         {
-            zip = new ZipArchive(File.OpenRead(path), ZipArchiveMode.Read, false);
+            archive = SharpCompress.Archives.ArchiveFactory.Open(path);
             FilterEntries();
             PageNumber = 0;
         }
@@ -32,7 +32,7 @@ namespace Kola.Model
                 {
                     pageNumber = 0;
                 }
-                else if(value >= PageCount)
+                else if (value >= PageCount)
                 {
                     pageNumber = PageCount - 1;
                 }
@@ -58,13 +58,13 @@ namespace Kola.Model
 
         public override void Close()
         {
-            zip.Dispose();
+            archive.Dispose();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private ZipArchive zip;
-        private ZipArchiveEntry[] imageEntries;
+        private SharpCompress.Archives.IArchive archive;
+        private SharpCompress.Archives.IArchiveEntry[] imageEntries;
 
         private int pageNumber;
         private ImageSource pageImage;
@@ -76,29 +76,29 @@ namespace Kola.Model
 
         private void FilterEntries()
         {
-            imageEntries = zip.Entries.Where(t => {
-                string ext = System.IO.Path.GetExtension(t.FullName).ToLower();
+            imageEntries = archive.Entries.Where(t => {
+                string ext = System.IO.Path.GetExtension(t.Key).ToLower();
                 return ext == ".png" || ext == ".jpg" || ext == ".bmp";
-                }).ToArray();
+            }).ToArray();
         }
         private void GenerateImage()
         {
             BitmapImage image = new BitmapImage();
-            Stream imgStream = imageEntries[PageNumber].Open();
+            Stream imgStream = imageEntries[PageNumber].OpenEntryStream();
             image.BeginInit();
             image.CacheOption = BitmapCacheOption.OnLoad;
             image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-            
+
             image.UriSource = null;
 
-            using(MemoryStream ms = new MemoryStream())
+            using (MemoryStream ms = new MemoryStream())
             {
-                imgStream.CopyTo(ms, (int)imageEntries[PageNumber].Length);
+                imgStream.CopyTo(ms, (int)imageEntries[PageNumber].Size);
                 ms.Position = 0;
                 image.StreamSource = ms;
                 image.EndInit();
             }
-            
+
             image.Freeze();
             imgStream.Dispose();
             pageImage = image;

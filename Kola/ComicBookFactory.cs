@@ -28,14 +28,16 @@ namespace Kola
         {
             creators = new Dictionary<string, Func<string, ComicBook>>()
             {
-                {".cbz",  CreateCBZ},
-                {".zip",  CreateCBZ}
+                {".cbz",  CreateArchiveBook},
+                {".zip",  CreateArchiveBook},
+                {".cbr", CreateArchiveBook },
+                {".rar", CreateArchiveBook }
             };
         }
 
-        private static ComicBook CreateCBZ(string path)
+        private static ComicBook CreateArchiveBook(string path)
         {
-            return new CBZBook(path);
+            return new ArchiveBook(path);
         }
     }
 }
