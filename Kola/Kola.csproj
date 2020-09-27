@@ -80,6 +80,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\TrackBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Tracker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -99,9 +103,13 @@
     <Compile Include="Controls\Tabs.xaml.cs">
       <DependentUpon>Tabs.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TrackBar.xaml.cs">
+      <DependentUpon>TrackBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Tracker.xaml.cs">
       <DependentUpon>Tracker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\FloatToGridLengthConverter.cs" />
     <Compile Include="LambdaCommand.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
