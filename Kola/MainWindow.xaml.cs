@@ -34,6 +34,8 @@ namespace Kola
             Model = model;
             InitializeComponent();
             InitKeyboardGestures();
+
+            WindowState = WindowState.Maximized;
         }
 
         private Model.Model model;
