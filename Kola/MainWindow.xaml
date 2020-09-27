@@ -10,6 +10,7 @@
         Title="MainWindow" Height="450" Width="800" Background="{DynamicResource BackgroundColor}">
     <Window.Resources>
         <model:ComicBookArrayToStringArrayConverter x:Key="ComicBookArrToStrConv" />
+        <local:IntToPlus1Converter x:Key="plus1Converter" />
     </Window.Resources>
     <Grid ShowGridLines="True">
         <Grid.ColumnDefinitions>
@@ -53,7 +54,7 @@
             Grid.Column="0" Grid.ColumnSpan="3"
             Grid.Row="2"
             VerticalAlignment="Bottom"
-            CurrentValue="{Binding SelectedTab.PageNumber, Mode=TwoWay}"
+            CurrentValue="{Binding SelectedTab.PageNumber, Mode=TwoWay, Converter={StaticResource plus1Converter}}"
             MaxValue="{Binding SelectedTab.PageCount}" Height="50"
             />
     </Grid>

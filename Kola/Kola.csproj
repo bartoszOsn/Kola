@@ -110,6 +110,7 @@
       <DependentUpon>Tracker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\FloatToGridLengthConverter.cs" />
+    <Compile Include="Converters\IntToPlus1Converter.cs" />
     <Compile Include="LambdaCommand.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

@@ -14,7 +14,7 @@
             <Run>/</Run>
             <Run Text="{Binding ElementName=Control, Path=MaxValue}" />
         </TextBlock>
-        <local:TrackBar x:Name="trackbar" Minimum="0" Maximum="{Binding ElementName=Control, Path=MaxValue}" Value="{Binding ElementName=Control, Path=CurrentValue, Mode=TwoWay}" VerticalAlignment="Bottom">
+        <local:TrackBar x:Name="trackbar" Minimum="1" Maximum="{Binding ElementName=Control, Path=MaxValue}" Value="{Binding ElementName=Control, Path=CurrentValue, Mode=TwoWay}" VerticalAlignment="Bottom">
             <local:TrackBar.Style>
                 <Style TargetType="local:TrackBar">
                     <Style.Triggers>
