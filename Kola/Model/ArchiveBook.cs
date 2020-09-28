@@ -5,6 +5,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -18,6 +19,9 @@ namespace Kola.Model
             archive = SharpCompress.Archives.ArchiveFactory.Open(path);
             FilterEntries();
             PageNumber = 0;
+            cts = new CancellationTokenSource();
+            unpackingTask = new Task(UnpackingMethod, cts.Token, TaskCreationOptions.LongRunning);
+            unpackingTask.Start();
         }
 
         public override int PageNumber
@@ -28,21 +32,25 @@ namespace Kola.Model
             }
             set
             {
+                int p;
                 if (value < 0)
                 {
-                    pageNumber = 0;
+                    p = 0;
                 }
                 else if (value >= PageCount)
                 {
-                    pageNumber = PageCount - 1;
+                    p = PageCount - 1;
                 }
                 else
                 {
-                    pageNumber = value;
+                    p = value;
                 }
-                GenerateImage();
+                if (p == PageNumber)
+                {
+                    return;
+                }
+                pageNumber = p;
                 Changed(nameof(PageNumber));
-                Changed(nameof(PageImage));
             }
         }
 
@@ -69,6 +77,9 @@ namespace Kola.Model
         private int pageNumber;
         private ImageSource pageImage;
 
+        private Task unpackingTask;
+        private CancellationTokenSource cts;
+
         private void Changed(string prop)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
@@ -81,7 +92,7 @@ namespace Kola.Model
                 return ext == ".png" || ext == ".jpg" || ext == ".bmp";
             }).ToArray();
         }
-        private void GenerateImage()
+        private ImageSource GenerateImage()
         {
             BitmapImage image = new BitmapImage();
             Stream imgStream = imageEntries[PageNumber].OpenEntryStream();
@@ -101,7 +112,30 @@ namespace Kola.Model
 
             image.Freeze();
             imgStream.Dispose();
-            pageImage = image;
+            return image;
+        }
+
+        private void UnpackingMethod()
+        {
+            int currentPage = pageNumber;
+            while(true)
+            {
+                currentPage = pageNumber;
+                pageImage = null;
+                Changed(nameof(PageImage));
+                ImageSource source = GenerateImage();
+                if(cts.IsCancellationRequested)
+                {
+                    break;
+                }
+                if(currentPage != pageNumber)
+                {
+                    continue;
+                }
+                pageImage = source;
+                Changed(nameof(PageImage));
+                while (currentPage == pageNumber) { } //Wait while page is not changed.
+            }
         }
     }
 }
