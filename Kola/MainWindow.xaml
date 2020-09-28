@@ -12,7 +12,7 @@
         <model:ComicBookArrayToStringArrayConverter x:Key="ComicBookArrToStrConv" />
         <local:IntToPlus1Converter x:Key="plus1Converter" />
     </Window.Resources>
-    <Grid ShowGridLines="True">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
             <ColumnDefinition Width="1*" />
