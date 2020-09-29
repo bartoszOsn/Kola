@@ -72,7 +72,9 @@ namespace Kola.Controls
             DependencyProperty.Register("Value", typeof(int), typeof(TrackBar), new PropertyMetadata(0, OnPropertyChange));
 
 
-        
+        /// <summary>
+        /// Width of the thumb of the slider, in pixels.
+        /// </summary>
         public int ThumbWidth
         {
             get { return (int)GetValue(ThumbWidthProperty); }
@@ -121,6 +123,12 @@ namespace Kola.Controls
 
         private bool isBeingDragged = false;
 
+        /// <summary>
+        /// Notifies that NormalisedValue changed.
+        /// </summary>
+        /// <remarks>
+        /// When any of the properties: Minimum, Maximum or Value changes, NormalisedValue also changes.
+        /// </remarks>
         private static void OnPropertyChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((TrackBar)d).Changed(nameof(NormalisedValue));
