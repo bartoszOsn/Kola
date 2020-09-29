@@ -33,11 +33,18 @@
             OnSelectTab="Tabs_OnSelectTab"
             />
         <Image
+            x:Name="Image"
             Grid.Column="0" Grid.ColumnSpan="3"
             Grid.Row="1" Grid.RowSpan="2"
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
             Source="{Binding SelectedTab.PageImage}"
             />
+        <Canvas
+            Grid.Column="0" Grid.ColumnSpan="3"
+            Grid.Row="1" Grid.RowSpan="2"
+            Background="Transparent">
+            <controls:Magnifier Image="{Binding ElementName=Image}"/>
+        </Canvas>
         <controls:PageChanger
             Grid.Column="2"
             Grid.Row="1" Grid.RowSpan="2"

@@ -19,7 +19,7 @@ namespace Kola.Controls
     /// Control which magnifies part of image control.
     /// </summary>
     /// <remarks>
-    /// It should be direct child of canvas streched over whole area where magnifier can be used.
+    /// It should be direct child of canvas with background property set and streched over whole area where magnifier can be used.
     /// It appears when you click on point on canvas and then drag mouse, to change it's size.
     /// While holding left mouse button, you can click right mouse button and drag to change magnification factor.
     /// </remarks>
@@ -50,6 +50,139 @@ namespace Kola.Controls
         public Magnifier()
         {
             InitializeComponent();
+            Loaded += OnLoaded;
+        }
+
+        protected void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            Canvas.MouseDown += Canvas_MouseDown;
+            Canvas.MouseUp += Canvas_MouseDown;
+            Canvas.MouseMove += Canvas_MouseMove;
+        }
+
+        private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(e.ButtonState == MouseButtonState.Pressed)
+            {
+                if (e.ChangedButton == MouseButton.Left)
+                {
+                    MouseLeftDown();
+                }
+                else if (e.ChangedButton == MouseButton.Right)
+                {
+                    MouseRightDown();
+                }
+            }
+            else
+            {
+                if (e.ChangedButton == MouseButton.Left)
+                {
+                    MouseLeftUp();
+                }
+                else if (e.ChangedButton == MouseButton.Right)
+                {
+                    MouseRightUp();
+                }
+            }
+            
+        }
+
+        private void Canvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(leftClick)
+            {
+                if(rightClick)
+                {
+                    ResetZoom();
+                }
+                else
+                {
+                    ResetRadius();
+                }
+            }
+        }
+
+        private bool leftClick = false;
+        private bool rightClick = false;
+        private Point lectClickCenter;
+        private Point RightClickCenter;
+        private double factor = 2.0;
+
+        private void MouseLeftDown()
+        {
+            Canvas.CaptureMouse();
+            lectClickCenter = Mouse.GetPosition(Canvas);
+            leftClick = true;
+        }
+
+        private void MouseLeftUp()
+        {
+            Canvas.ReleaseMouseCapture();
+            leftClick = false;
+            Hide();
+        }
+
+        private void MouseRightDown()
+        {
+            RightClickCenter = Mouse.GetPosition(Canvas);
+            rightClick = true;
+        }
+
+        private void MouseRightUp()
+        {
+            rightClick = false;
+        }
+
+        private double GetRadius()
+        {
+            Point mouse = Mouse.GetPosition(Canvas);
+            double x = mouse.X - lectClickCenter.X;
+            double y = mouse.Y - lectClickCenter.Y;
+            return Math.Sqrt(x * x + y * y);
+        }
+        
+        private void PositionImage(double radius)
+        {
+            InternalImage.Width = factor * Image.ActualWidth;
+            InternalImage.Height = factor * Image.ActualHeight;
+
+            Point CenterInImage = Canvas.TranslatePoint(lectClickCenter, Image);
+            CenterInImage.X = CenterInImage.X *factor;
+            CenterInImage.Y = CenterInImage.Y * factor;
+            Canvas.SetLeft(InternalImage, radius - CenterInImage.X);
+            Canvas.SetTop(InternalImage, radius - CenterInImage.Y);
+        }
+        private void ResetRadius()
+        {
+            double radius = GetRadius();
+            Width = 2 * radius;
+            Height = 2 * radius;
+
+            Canvas.SetLeft(this, lectClickCenter.X - radius);
+            Canvas.SetTop(this, lectClickCenter.Y - radius);
+
+            ClipCircle.RadiusX = radius;
+            ClipCircle.RadiusY = radius;
+            ClipCircle.Center = new Point(radius, radius);
+
+            PositionImage(radius);
+        }
+
+        private void ResetZoom()
+        {
+            Point mouse = Mouse.GetPosition(Canvas);
+            double x = mouse.X - RightClickCenter.X;
+            double y = mouse.Y - RightClickCenter.Y;
+            factor = 2 + Math.Sqrt(x * x + y * y) / 1000.0;
+
+            PositionImage(GetRadius());
+        }
+
+        private void Hide()
+        {
+            ClipCircle.RadiusX = 0;
+            ClipCircle.RadiusY = 0;
+            factor = 2;
         }
     }
 }

@@ -72,6 +72,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\Magnifier.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\PageChanger.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -97,6 +101,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ComicBookFactory.cs" />
+    <Compile Include="Controls\Magnifier.xaml.cs">
+      <DependentUpon>Magnifier.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PageChanger.xaml.cs">
       <DependentUpon>PageChanger.xaml</DependentUpon>
     </Compile>
