@@ -21,6 +21,8 @@ namespace Kola.Model
 
 
         public abstract void Close();
+        public abstract void GainFocus();
+        public abstract void LostFocus();
         public void NextPage()
         {
             PageNumber++;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -19,9 +20,6 @@ namespace Kola.Model
             archive = SharpCompress.Archives.ArchiveFactory.Open(path);
             FilterEntries();
             PageNumber = 0;
-            cts = new CancellationTokenSource();
-            unpackingTask = new Task(UnpackingMethod, cts.Token, TaskCreationOptions.LongRunning);
-            unpackingTask.Start();
         }
 
         public override int PageNumber
@@ -67,6 +65,16 @@ namespace Kola.Model
         public override void Close()
         {
             archive.Dispose();
+        }
+        public override void GainFocus()
+        {
+            cts = new CancellationTokenSource();
+            unpackingTask = new Task(UnpackingMethod, cts.Token, TaskCreationOptions.LongRunning);
+            unpackingTask.Start();
+        }
+        public override void LostFocus()
+        {
+            cts.Cancel();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -115,7 +123,7 @@ namespace Kola.Model
             return image;
         }
 
-        private void UnpackingMethod()
+        private async void UnpackingMethod()
         {
             int currentPage = pageNumber;
             while(true)
@@ -134,7 +142,14 @@ namespace Kola.Model
                 }
                 pageImage = source;
                 Changed(nameof(PageImage));
-                while (currentPage == pageNumber) { } //Wait while page is not changed.
+                while (currentPage == pageNumber) //Wait while page is not changed.
+                {
+                    if (cts.IsCancellationRequested)
+                    {
+                        break;
+                    }
+                    await Task.Delay(10);
+                }
             }
         }
     }

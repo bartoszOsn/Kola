@@ -19,6 +19,14 @@ namespace Kola.Model
             Tabs.CollectionChanged += (s, e) => Changed(nameof(Tabs));
             selectedTabIndex = -1;
         }
+
+        ~Model()
+        {
+            while(Tabs.Count > 0)
+            {
+                Close(Tabs.Count - 1);
+            }
+        }
         public ObservableCollection<ComicBook> Tabs { get; private set; }
         public int SelectedTabIndex
         {
@@ -28,7 +36,9 @@ namespace Kola.Model
             }
             set
             {
+                Tabs.ElementAtOrDefault(selectedTabIndex)?.LostFocus();
                 selectedTabIndex = value;
+                Tabs.ElementAtOrDefault(selectedTabIndex)?.GainFocus();
                 Changed(nameof(SelectedTabIndex));
                 Changed(nameof(SelectedTab));
             }
@@ -74,6 +84,7 @@ namespace Kola.Model
         }
         public void Close(int index)
         {
+            Tabs[index].LostFocus();
             Tabs[index].Close();
             Tabs.RemoveAt(index);
             if(index < SelectedTabIndex)
