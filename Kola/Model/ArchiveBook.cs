@@ -74,7 +74,7 @@ namespace Kola.Model
         }
         public override void LostFocus()
         {
-            cts.Cancel();
+            cts?.Cancel();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

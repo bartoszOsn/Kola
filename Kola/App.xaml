@@ -11,6 +11,8 @@
             <SolidColorBrush x:Key="PrimaryColorVariant" Color="#FF95C2FC"/>
             <SolidColorBrush x:Key="SecondaryColorVariant" Color="#FFB6B6B6"/>
             <SolidColorBrush x:Key="BackgroundColorVariant" Color="#FF525252"/>
+
+            <FontFamily x:Key="FontAwesome">/fonts/fa-solid-900.ttf#Font Awesome 5 Free Solid</FontFamily>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
