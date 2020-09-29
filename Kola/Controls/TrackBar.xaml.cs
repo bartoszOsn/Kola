@@ -139,9 +139,7 @@ namespace Kola.Controls
         {
             IsBeingDragged = true;
 
-            Window wnd = Window.GetWindow(this);
-            Mouse.AddMouseMoveHandler(wnd, OnMouseMove);
-            Mouse.AddMouseUpHandler(wnd, grid_MouseUp);
+            CaptureMouse();
 
             OnMouseMove(this, e);
         }
@@ -150,15 +148,17 @@ namespace Kola.Controls
         {
             IsBeingDragged = false;
 
-            Window wnd = Window.GetWindow(this);
-            Mouse.RemoveMouseMoveHandler(wnd, OnMouseMove);
-            Mouse.RemoveMouseUpHandler(wnd, grid_MouseUp);
+            ReleaseMouseCapture();
         }
 
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
-            double relativePoint = e.GetPosition(grid).X;
-            NormalisedValue = (float)(relativePoint / grid.ActualWidth);
+            if(IsBeingDragged)
+            {
+                double relativePoint = e.GetPosition(grid).X;
+                NormalisedValue = (float)(relativePoint / grid.ActualWidth);
+            }
+            
         }
     }
 }
