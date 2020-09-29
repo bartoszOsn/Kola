@@ -154,7 +154,6 @@ namespace Kola.Controls
 
             Canvas.SetLeft(InternalImage, radius - CenterInImage.X * factor);
             Canvas.SetTop(InternalImage, radius - CenterInImage.Y * factor);
-            Console.WriteLine(radius - CenterInImage.X / Image.ActualWidth * InternalImage.ActualWidth);
         }
         private void ResetRadius()
         {
