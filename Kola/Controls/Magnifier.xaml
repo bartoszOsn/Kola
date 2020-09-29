@@ -13,8 +13,6 @@
         </Canvas.Clip>
         <Image
             Source="{Binding ElementName=Control, Path=Image.Source}"
-            Width="{Binding ElementName=Control, Path=ActualWidth}"
-            Height="{Binding ElementName=Control,Path=ActualHeight}"
             x:Name="InternalImage" />
 
     </Canvas>

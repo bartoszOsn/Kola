@@ -108,6 +108,12 @@ namespace Kola.Controls
         private Point RightClickCenter;
         private double factor = 2.0;
 
+        private double getDistance(Point p1, Point p2)
+        {
+            Vector v = new Vector(p1.X - p2.X, p1.Y - p2.Y);
+            return v.Length;
+        }
+
         private void MouseLeftDown()
         {
             Canvas.CaptureMouse();
@@ -136,9 +142,7 @@ namespace Kola.Controls
         private double GetRadius()
         {
             Point mouse = Mouse.GetPosition(Canvas);
-            double x = mouse.X - lectClickCenter.X;
-            double y = mouse.Y - lectClickCenter.Y;
-            return Math.Sqrt(x * x + y * y);
+            return getDistance(mouse, lectClickCenter);
         }
         
         private void PositionImage(double radius)
@@ -147,10 +151,10 @@ namespace Kola.Controls
             InternalImage.Height = factor * Image.ActualHeight;
 
             Point CenterInImage = Canvas.TranslatePoint(lectClickCenter, Image);
-            CenterInImage.X = CenterInImage.X *factor;
-            CenterInImage.Y = CenterInImage.Y * factor;
-            Canvas.SetLeft(InternalImage, radius - CenterInImage.X);
-            Canvas.SetTop(InternalImage, radius - CenterInImage.Y);
+
+            Canvas.SetLeft(InternalImage, radius - CenterInImage.X * factor);
+            Canvas.SetTop(InternalImage, radius - CenterInImage.Y * factor);
+            Console.WriteLine(radius - CenterInImage.X / Image.ActualWidth * InternalImage.ActualWidth);
         }
         private void ResetRadius()
         {
@@ -171,11 +175,17 @@ namespace Kola.Controls
         private void ResetZoom()
         {
             Point mouse = Mouse.GetPosition(Canvas);
-            double x = mouse.X - RightClickCenter.X;
-            double y = mouse.Y - RightClickCenter.Y;
-            factor = 2 + Math.Sqrt(x * x + y * y) / 1000.0;
 
-            PositionImage(GetRadius());
+            double distToLeft = getDistance(mouse, lectClickCenter);
+            double distToRight = getDistance(mouse, RightClickCenter);
+            double distFromLeftToRignt = getDistance(lectClickCenter, RightClickCenter);
+
+            distToLeft /= distFromLeftToRignt;
+            distToRight /= distFromLeftToRignt;
+
+            factor = 2 * distToLeft + distToRight;
+
+            PositionImage(distFromLeftToRignt);
         }
 
         private void Hide()
