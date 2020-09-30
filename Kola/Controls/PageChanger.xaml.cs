@@ -42,13 +42,24 @@ namespace Kola.Controls
             DependencyProperty.Register(nameof(ArrowDirection), typeof(Direction), typeof(PageChanger), new PropertyMetadata(Direction.Left));
 
         /// <summary>
-        /// Event fired when user click on this component.
+        /// Is called when user click this control with left mouse button.
         /// </summary>
-        public event MouseButtonEventHandler Click;
-
-        private void Control_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            Click?.Invoke(this, new MouseButtonEventArgs(e.MouseDevice, e.Timestamp, e.ChangedButton));
+            if (ArrowDirection == Direction.Left)
+            {
+                if (AppCommands.PreviousPage.CanExecute(null, this))
+                {
+                    AppCommands.PreviousPage.Execute(null, this);
+                }
+            }
+            else
+            {
+                if (AppCommands.NextPage.CanExecute(null, this))
+                {
+                    AppCommands.NextPage.Execute(null, this);
+                }
+            }
         }
     }
 }

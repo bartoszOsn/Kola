@@ -63,12 +63,34 @@ namespace Kola
             e.CanExecute = true;
         }
 
+        public void NextPage(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window.Model.SelectedTab.PageNumber++;
+        }
+
+        public void CanNextPage(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = Window.Model.SelectedTab.PageNumber < Window.Model.SelectedTab.PageCount - 1;
+        }
+
+        public void PreviousPage(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window.Model.SelectedTab.PageNumber--;
+        }
+
+        public void CanPreviousPage(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = Window.Model.SelectedTab.PageNumber > 0;
+        }
+
         private void SetUpBindings()
         {
             Window.CommandBindings.Add(new CommandBinding(AppCommands.OpenTab, Open, CanOpen));
             Window.CommandBindings.Add(new CommandBinding(AppCommands.SelectTab, SelectTab, CanSelectTab));
             Window.CommandBindings.Add(new CommandBinding(AppCommands.CloseTab, CloseTab, CanCloseTab));
             Window.CommandBindings.Add(new CommandBinding(AppCommands.OpenSettings, OpenSettings, CanOpenSettings));
+            Window.CommandBindings.Add(new CommandBinding(AppCommands.NextPage, NextPage, CanNextPage));
+            Window.CommandBindings.Add(new CommandBinding(AppCommands.PreviousPage, PreviousPage, CanPreviousPage));
         }
 
     }

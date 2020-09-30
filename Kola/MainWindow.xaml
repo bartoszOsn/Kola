@@ -46,13 +46,11 @@
             Grid.Column="2"
             Grid.Row="1" Grid.RowSpan="2"
             ArrowDirection="Right"
-            Click="RightPageChanger_Click"
             />
         <controls:PageChanger
             Grid.Column="0"
             Grid.Row="1" Grid.RowSpan="2"
             ArrowDirection="Left"
-            Click="LeftPageChanger_Click"
             />
         <controls:Tracker
             Grid.Column="0" Grid.ColumnSpan="3"
