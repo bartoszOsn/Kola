@@ -122,7 +122,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AppCommands.cs" />
     <Compile Include="ComicBookFactory.cs" />
+    <Compile Include="CommandFunctions.cs" />
     <Compile Include="Controls\Magnifier.xaml.cs">
       <DependentUpon>Magnifier.xaml</DependentUpon>
     </Compile>

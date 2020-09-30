@@ -87,10 +87,6 @@ namespace Kola.Controls
         /// </summary>
         public event EventHandler<TabEventArgs> OnCloseTab;
         /// <summary>
-        /// Event fired when user clicks new card button
-        /// </summary>
-        public event EventHandler<EventArgs> OnNewTab;
-        /// <summary>
         /// Event fired when user clicks settings button
         /// </summary>
         public event EventHandler<EventArgs> OnSettings;
@@ -98,11 +94,6 @@ namespace Kola.Controls
         public Tabs()
         {
             InitializeComponent();
-        }
-
-        private void Add_Button_Click(object sender, RoutedEventArgs e)
-        {
-            OnNewTab?.Invoke(this, EventArgs.Empty);
         }
 
         private void Settings_Button_Click(object sender, RoutedEventArgs e)

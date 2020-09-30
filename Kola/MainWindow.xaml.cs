@@ -29,9 +29,11 @@ namespace Kola
                 DataContext = value;
             }
         }
+        public CommandFunctions Commands { get; private set; }
         public MainWindow(Model.Model model)
         {
             Model = model;
+            Commands = new CommandFunctions(this);
             InitializeComponent();
             InitKeyboardGestures();
 
@@ -39,14 +41,6 @@ namespace Kola
         }
 
         private Model.Model model;
-
-        private void Tabs_OnNewTab(object sender, EventArgs e)
-        {
-            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
-            dialog.Multiselect = true;
-            dialog.ShowDialog(this);
-            Model.Add(dialog.FileNames);
-        }
 
         private void Tabs_OnCloseTab(object sender, Controls.TabEventArgs e)
         {
