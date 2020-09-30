@@ -84,8 +84,8 @@ namespace Kola.Model
         }
         public void Close(int index)
         {
-            Tabs[index].LostFocus();
-            Tabs[index].Close();
+            ComicBook tab = Tabs[index];
+            tab.Close();
             Tabs.RemoveAt(index);
             if(index < SelectedTabIndex)
             {
@@ -93,6 +93,8 @@ namespace Kola.Model
             }
             if(index == SelectedTabIndex)
             {
+                tab.LostFocus();
+
                 //Trigger INotifyPropertyChanged
                 SelectedTabIndex = SelectedTabIndex;
             }
