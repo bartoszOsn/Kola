@@ -63,14 +63,8 @@ namespace Kola
 
         private void InitKeyboardGestures()
         {
-            KeyGesture nextGesture = new KeyGesture(Key.Right);
-            KeyGesture PrevGesture = new KeyGesture(Key.Left);
-
-            LambdaCommand nextCommand = new LambdaCommand(t => NextPage());
-            LambdaCommand prevCommand = new LambdaCommand(t => PreviousPage());
-
-            InputBindings.Add(new InputBinding(nextCommand ,nextGesture));
-            InputBindings.Add(new InputBinding(prevCommand ,PrevGesture));
+            InputBindings.Add(new InputBinding(AppCommands.NextPage , new KeyGesture(Key.Right)));
+            InputBindings.Add(new InputBinding(AppCommands.PreviousPage , new KeyGesture(Key.Left)));
         }
     }
 }
