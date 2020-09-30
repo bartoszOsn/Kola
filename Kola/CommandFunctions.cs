@@ -52,11 +52,23 @@ namespace Kola
             e.CanExecute = (int)e.Parameter < Window.Model.Tabs.Count;
         }
 
+        public void OpenSettings(object sender, ExecutedRoutedEventArgs e)
+        {
+            //TODO implement
+            MessageBox.Show("There are no settings for now you silly!");
+        }
+
+        public void CanOpenSettings(object senter, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
         private void SetUpBindings()
         {
             Window.CommandBindings.Add(new CommandBinding(AppCommands.OpenTab, Open, CanOpen));
             Window.CommandBindings.Add(new CommandBinding(AppCommands.SelectTab, SelectTab, CanSelectTab));
             Window.CommandBindings.Add(new CommandBinding(AppCommands.CloseTab, CloseTab, CanCloseTab));
+            Window.CommandBindings.Add(new CommandBinding(AppCommands.OpenSettings, OpenSettings, CanOpenSettings));
         }
 
     }

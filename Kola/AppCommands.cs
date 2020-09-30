@@ -12,5 +12,6 @@ namespace Kola
         public static readonly RoutedUICommand OpenTab = new RoutedUICommand("Opens new tab", "OpenTab", typeof(object));
         public static readonly RoutedUICommand SelectTab = new RoutedUICommand("Selects tab", "SelectTab", typeof(object));
         public static readonly RoutedUICommand CloseTab = new RoutedUICommand("Closes tab", "CloseTab", typeof(object));
+        public static readonly RoutedUICommand OpenSettings = new RoutedUICommand("Opens Settings", "OpenSettings", typeof(object));
     }
 }

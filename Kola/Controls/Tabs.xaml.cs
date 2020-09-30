@@ -78,19 +78,9 @@ namespace Kola.Controls
         public static readonly DependencyProperty SelectedIndexProperty =
             DependencyProperty.Register("SelectedIndex", typeof(int), typeof(Tabs), new PropertyMetadata(-1));
 
-        /// <summary>
-        /// Event fired when user clicks settings button
-        /// </summary>
-        public event EventHandler<EventArgs> OnSettings;
-
         public Tabs()
         {
             InitializeComponent();
-        }
-
-        private void Settings_Button_Click(object sender, RoutedEventArgs e)
-        {
-            OnSettings?.Invoke(this, EventArgs.Empty);
         }
     }
 }
