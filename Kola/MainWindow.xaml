@@ -28,7 +28,6 @@
             Grid.Row="0"
             TabNames="{Binding Tabs, Converter={StaticResource ComicBookArrToStrConv}}"
             SelectedIndex="{Binding SelectedTabIndex}"
-            OnCloseTab="Tabs_OnCloseTab"
             />
         <Image
             x:Name="Image"

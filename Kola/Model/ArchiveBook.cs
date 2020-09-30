@@ -74,7 +74,7 @@ namespace Kola.Model
         }
         public override void LostFocus()
         {
-            cts.Cancel();
+            cts?.Cancel();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -131,6 +131,10 @@ namespace Kola.Model
                 currentPage = pageNumber;
                 pageImage = null;
                 Changed(nameof(PageImage));
+                if (cts.IsCancellationRequested)
+                {
+                    break;
+                }
                 ImageSource source = GenerateImage();
                 if(cts.IsCancellationRequested)
                 {

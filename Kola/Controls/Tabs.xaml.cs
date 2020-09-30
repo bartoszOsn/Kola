@@ -79,10 +79,6 @@ namespace Kola.Controls
             DependencyProperty.Register("SelectedIndex", typeof(int), typeof(Tabs), new PropertyMetadata(-1));
 
         /// <summary>
-        /// Event fired when user wants to close the card and clicks "X" sign
-        /// </summary>
-        public event EventHandler<TabEventArgs> OnCloseTab;
-        /// <summary>
         /// Event fired when user clicks settings button
         /// </summary>
         public event EventHandler<EventArgs> OnSettings;
@@ -95,14 +91,6 @@ namespace Kola.Controls
         private void Settings_Button_Click(object sender, RoutedEventArgs e)
         {
             OnSettings?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void Close_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            FrameworkElement btn = (FrameworkElement)sender;
-            StringEntry entry = (StringEntry)btn.DataContext;
-
-            OnCloseTab?.Invoke(this, new TabEventArgs() { Index = entry.Index });
         }
     }
 }

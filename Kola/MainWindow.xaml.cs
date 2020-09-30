@@ -42,11 +42,6 @@ namespace Kola
 
         private Model.Model model;
 
-        private void Tabs_OnCloseTab(object sender, Controls.TabEventArgs e)
-        {
-            Model.Close(e.Index);
-        }
-
         private void RightPageChanger_Click(object sender, MouseButtonEventArgs e)
         {
             NextPage();

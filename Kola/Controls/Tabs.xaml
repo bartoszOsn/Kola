@@ -68,9 +68,16 @@
                         </Button.Style>
                         <Button.Content>
                             <DockPanel>
-                                <TextBlock FontFamily="{StaticResource FontAwesome}" Text="&#xf00d;" MouseDown="Close_MouseDown" DockPanel.Dock="Right" Margin="5, 0, 0, 0" MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" TextAlignment="Center" >
-                                    <TextBlock.Style>
-                                        <Style TargetType="TextBlock">
+                                <Button
+                                    FontFamily="{StaticResource FontAwesome}"
+                                    Content="&#xf00d;"
+                                    DockPanel.Dock="Right"
+                                    Margin="5, 0, 0, 0"
+                                    MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                                    Command="{x:Static kola:AppCommands.CloseTab}"
+                                    CommandParameter="{Binding Index}" >
+                                    <Button.Style>
+                                        <Style TargetType="Button">
                                             <Style.Triggers>
                                                 <Trigger Property="IsMouseOver" Value="true">
                                                     <Setter Property="Background" Value="{StaticResource PrimaryColorVariant}" />
@@ -78,8 +85,8 @@
                                                 </Trigger>
                                             </Style.Triggers>
                                         </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
+                                    </Button.Style>
+                                </Button>
                                 <TextBlock Text="{Binding Text}" />
                             </DockPanel>
                         </Button.Content>

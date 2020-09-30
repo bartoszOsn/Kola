@@ -42,10 +42,21 @@ namespace Kola
             e.CanExecute = e.Parameter is int && (int)e.Parameter < Window.Model.Tabs.Count;
         }
 
+        public void CloseTab(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window.Model.Close((int)e.Parameter);
+        }
+
+        public void CanCloseTab(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = (int)e.Parameter < Window.Model.Tabs.Count;
+        }
+
         private void SetUpBindings()
         {
             Window.CommandBindings.Add(new CommandBinding(AppCommands.OpenTab, Open, CanOpen));
             Window.CommandBindings.Add(new CommandBinding(AppCommands.SelectTab, SelectTab, CanSelectTab));
+            Window.CommandBindings.Add(new CommandBinding(AppCommands.CloseTab, CloseTab, CanCloseTab));
         }
 
     }
