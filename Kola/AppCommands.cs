@@ -9,6 +9,7 @@ namespace Kola
 {
     static public class AppCommands
     {
-        public static readonly RoutedUICommand Open = new RoutedUICommand("Opens new tab", "Open", typeof(object));
+        public static readonly RoutedUICommand OpenTab = new RoutedUICommand("Opens new tab", "OpenTab", typeof(object));
+        public static readonly RoutedUICommand SelectTab = new RoutedUICommand("Selects tab", "SelectTab", typeof(object));
     }
 }

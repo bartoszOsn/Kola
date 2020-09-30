@@ -56,7 +56,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Click="Tab_Click">
+                    <Button Command="{x:Static kola:AppCommands.SelectTab}" CommandParameter="{Binding Index}">
                         <Button.Style>
                             <Style BasedOn="{StaticResource btnStyle}" TargetType="Button">
                                 <Style.Triggers>
@@ -87,7 +87,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <Button Style="{StaticResource btnStyle}" Command="{x:Static kola:AppCommands.Open}">
+        <Button Style="{StaticResource btnStyle}" Command="{x:Static kola:AppCommands.OpenTab}">
             <TextBlock FontFamily="{StaticResource FontAwesome}" Text="&#xf067;" />
         </Button>
     </DockPanel>

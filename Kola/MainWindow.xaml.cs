@@ -47,11 +47,6 @@ namespace Kola
             Model.Close(e.Index);
         }
 
-        private void Tabs_OnSelectTab(object sender, Controls.TabEventArgs e)
-        {
-            Model.SelectedTabIndex = e.Index;
-        }
-
         private void RightPageChanger_Click(object sender, MouseButtonEventArgs e)
         {
             NextPage();

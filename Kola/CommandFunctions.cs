@@ -32,9 +32,20 @@ namespace Kola
             e.CanExecute = true;
         }
 
+        public void SelectTab(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window.Model.SelectedTabIndex = (int)e.Parameter;
+        }
+
+        public void CanSelectTab(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = e.Parameter is int && (int)e.Parameter < Window.Model.Tabs.Count;
+        }
+
         private void SetUpBindings()
         {
-            Window.CommandBindings.Add(new CommandBinding(AppCommands.Open, Open, CanOpen));
+            Window.CommandBindings.Add(new CommandBinding(AppCommands.OpenTab, Open, CanOpen));
+            Window.CommandBindings.Add(new CommandBinding(AppCommands.SelectTab, SelectTab, CanSelectTab));
         }
 
     }

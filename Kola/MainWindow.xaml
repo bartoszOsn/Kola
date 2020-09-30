@@ -29,7 +29,6 @@
             TabNames="{Binding Tabs, Converter={StaticResource ComicBookArrToStrConv}}"
             SelectedIndex="{Binding SelectedTabIndex}"
             OnCloseTab="Tabs_OnCloseTab"
-            OnSelectTab="Tabs_OnSelectTab"
             />
         <Image
             x:Name="Image"
