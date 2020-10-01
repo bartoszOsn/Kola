@@ -83,6 +83,45 @@ namespace Kola
             e.CanExecute = Window.Model.SelectedTab.PageNumber > 0;
         }
 
+        public void Close(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window.Close();
+        }
+
+        public void CanClose(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        public void Maximize(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window.WindowState = WindowState.Maximized;
+        }
+        public void CanMaximize(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = Window.WindowState != WindowState.Maximized;
+        }
+
+        public void Restore(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window.WindowState = WindowState.Normal;
+        }
+
+        public void CanRestore(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = Window.WindowState != WindowState.Normal;
+        }
+
+        public void Minimize(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window.WindowState = WindowState.Minimized;
+        }
+
+        public void CanMinimize(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = Window.WindowState != WindowState.Minimized;
+        }
+
         private void SetUpBindings()
         {
             Window.CommandBindings.Add(new CommandBinding(AppCommands.OpenTab, Open, CanOpen));
@@ -91,6 +130,11 @@ namespace Kola
             Window.CommandBindings.Add(new CommandBinding(AppCommands.OpenSettings, OpenSettings, CanOpenSettings));
             Window.CommandBindings.Add(new CommandBinding(AppCommands.NextPage, NextPage, CanNextPage));
             Window.CommandBindings.Add(new CommandBinding(AppCommands.PreviousPage, PreviousPage, CanPreviousPage));
+
+            Window.CommandBindings.Add(new CommandBinding(AppCommands.CloseWindow, Close, CanClose));
+            Window.CommandBindings.Add(new CommandBinding(AppCommands.MaximiseWindow, Maximize, CanMaximize));
+            Window.CommandBindings.Add(new CommandBinding(AppCommands.RestoreWindow, Restore, CanRestore));
+            Window.CommandBindings.Add(new CommandBinding(AppCommands.MinizeWindow, Minimize, CanMinimize));
         }
 
     }
