@@ -13,7 +13,7 @@
     <Window.Resources>
         <model:ComicBookArrayToStringArrayConverter x:Key="ComicBookArrToStrConv" />
         <local:IntToPlus1Converter x:Key="plus1Converter" />
-        <shell:WindowChrome x:Key="chrome" GlassFrameThickness="0" CaptionHeight="40"  />
+        <shell:WindowChrome x:Key="chrome" GlassFrameThickness="0" CaptionHeight="40" CornerRadius="0" NonClientFrameEdges="Top" />
     </Window.Resources>
     <Window.Style>
         <Style TargetType="{x:Type local:MainWindow}">
@@ -25,6 +25,16 @@
         </Style>
     </Window.Style>
     <Grid>
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Setter Property="Margin" Value="0" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=WindowState}" Value="Maximized">
+                        <Setter Property="Margin" Value="7" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
             <ColumnDefinition Width="1*" />
