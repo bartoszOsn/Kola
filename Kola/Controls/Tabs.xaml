@@ -5,10 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Kola.Controls"
              xmlns:kola="clr-namespace:Kola"
+             xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
              mc:Ignorable="d"
              x:Name="Control"
              d:DesignHeight="50" d:DesignWidth="800"
-             Background="{StaticResource SecondaryColor}">
+             Background="{StaticResource SecondaryColor}"
+             Padding="10, 10, 10, 0">
     <UserControl.Resources>
         <local:StringArrayConverter x:Key="strConverter" />
     </UserControl.Resources>
@@ -17,7 +19,9 @@
             <Style TargetType="Button" x:Key="btnStyle">
                 <Setter Property="Background" Value="{StaticResource BackgroundColorVariant}" />
                 <Setter Property="Foreground" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="shell:WindowChrome.IsHitTestVisibleInChrome" Value="True" />
                 <Setter Property="Margin" Value="1, 4, 1, 0" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
                 <Setter Property="Padding" Value="5" />
                 <Setter Property="FontSize" Value="15" />
                 <Setter Property="Template">
@@ -56,7 +60,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Command="{x:Static kola:AppCommands.SelectTab}" CommandParameter="{Binding Index}">
+                    <Button Command="{x:Static kola:AppCommands.SelectTab}" CommandParameter="{Binding Index}" VerticalAlignment="Bottom">
                         <Button.Style>
                             <Style BasedOn="{StaticResource btnStyle}" TargetType="Button">
                                 <Style.Triggers>

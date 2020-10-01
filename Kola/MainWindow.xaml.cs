@@ -36,7 +36,6 @@ namespace Kola
             Commands = new CommandFunctions(this);
             InitializeComponent();
             InitKeyboardGestures();
-
             WindowState = WindowState.Maximized;
         }
 

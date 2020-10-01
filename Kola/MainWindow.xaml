@@ -6,12 +6,24 @@
         xmlns:local="clr-namespace:Kola"
         xmlns:model="clr-namespace:Kola.Model"
         xmlns:controls="clr-namespace:Kola.Controls"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        xmlns:windows="clr-namespace:System.Windows;assembly=PresentationFramework"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Background="{DynamicResource BackgroundColor}">
     <Window.Resources>
         <model:ComicBookArrayToStringArrayConverter x:Key="ComicBookArrToStrConv" />
         <local:IntToPlus1Converter x:Key="plus1Converter" />
+        <shell:WindowChrome x:Key="chrome" GlassFrameThickness="0" CaptionHeight="40"  />
     </Window.Resources>
+    <Window.Style>
+        <Style TargetType="{x:Type local:MainWindow}">
+            <Setter Property="shell:WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <DynamicResource ResourceKey="chrome" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Style>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
@@ -19,11 +31,12 @@
             <ColumnDefinition Width="100" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
+            <RowDefinition Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:MainWindow}}, Path=Resources[chrome].CaptionHeight}" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="200" />
         </Grid.RowDefinitions>
         <controls:Tabs
+            x:Name="tabs"
             Grid.Column="0" Grid.ColumnSpan="3"
             Grid.Row="0"
             TabNames="{Binding Tabs, Converter={StaticResource ComicBookArrToStrConv}}"
