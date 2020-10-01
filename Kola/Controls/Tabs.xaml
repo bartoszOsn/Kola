@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Kola.Controls"
              xmlns:kola="clr-namespace:Kola"
              xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+             xmlns:windows="clr-namespace:System.Windows;assembly=PresentationFramework"
              mc:Ignorable="d"
              x:Name="Control"
              d:DesignHeight="50" d:DesignWidth="800"
@@ -43,6 +44,36 @@
                 </Style.Triggers>
             </Style>
         </DockPanel.Resources>
+        <Button DockPanel.Dock="Right" Style="{StaticResource btnStyle}" Command="{x:Static kola:AppCommands.CloseWindow}">
+            <TextBlock FontFamily="{StaticResource FontAwesome}" Text="&#xf410;" />
+        </Button>
+        <ContentPresenter Content="" DockPanel.Dock="Right">
+            <ContentPresenter.Resources>
+                <DataTemplate x:Key="maximizeButton" >
+                    <Button Style="{StaticResource btnStyle}" Command="{x:Static kola:AppCommands.MaximiseWindow}">
+                        <TextBlock FontFamily="{StaticResource FontAwesome}" Text="&#xf2d0;" />
+                    </Button>
+                </DataTemplate>
+                <DataTemplate x:Key="restoreButton">
+                    <Button Style="{StaticResource btnStyle}" Command="{x:Static kola:AppCommands.RestoreWindow}">
+                        <TextBlock FontFamily="{StaticResource FontAwesome}" Text="&#xf2d2;" />
+                    </Button>
+                </DataTemplate>
+            </ContentPresenter.Resources>
+            <ContentPresenter.Style>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="ContentTemplate" Value="{DynamicResource maximizeButton}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=WindowState}" Value="{x:Static windows:WindowState.Maximized}">
+                            <Setter Property="ContentTemplate" Value="{DynamicResource restoreButton}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentPresenter.Style>
+        </ContentPresenter>
+        <Button DockPanel.Dock="Right" Style="{StaticResource btnStyle}" Command="{x:Static kola:AppCommands.MinizeWindow}">
+            <TextBlock FontFamily="{StaticResource FontAwesome}" Text="&#xf2d1;" />
+        </Button>
         <Button DockPanel.Dock="Right" Style="{StaticResource btnStyle}" Command="{x:Static kola:AppCommands.OpenSettings}">
             <TextBlock FontFamily="{StaticResource FontAwesome}" Text="&#xf013;" />
         </Button>

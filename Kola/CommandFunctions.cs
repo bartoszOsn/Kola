@@ -99,7 +99,7 @@ namespace Kola
         }
         public void CanMaximize(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = Window.WindowState != WindowState.Maximized;
+            e.CanExecute = true;
         }
 
         public void Restore(object sender, ExecutedRoutedEventArgs e)
@@ -109,7 +109,7 @@ namespace Kola
 
         public void CanRestore(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = Window.WindowState != WindowState.Normal;
+            e.CanExecute = true;
         }
 
         public void Minimize(object sender, ExecutedRoutedEventArgs e)
@@ -119,7 +119,7 @@ namespace Kola
 
         public void CanMinimize(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = Window.WindowState != WindowState.Minimized;
+            e.CanExecute = true;
         }
 
         private void SetUpBindings()
