@@ -13,78 +13,29 @@ using System.Windows.Media.Imaging;
 
 namespace Kola.Model
 {
-    class ArchiveBook : ComicBook
+    class ArchiveBook : AsyncBook
     {
         public ArchiveBook(string path) : base(path)
         {
             archive = SharpCompress.Archives.ArchiveFactory.Open(path);
             FilterEntries();
-            PageNumber = 0;
-        }
-
-        public override int PageNumber
-        {
-            get
-            {
-                return pageNumber;
-            }
-            set
-            {
-                int p;
-                if (value < 0)
-                {
-                    p = 0;
-                }
-                else if (value >= PageCount)
-                {
-                    p = PageCount - 1;
-                }
-                else
-                {
-                    p = value;
-                }
-                if (p == PageNumber)
-                {
-                    return;
-                }
-                pageNumber = p;
-                Changed(nameof(PageNumber));
-            }
         }
 
         public override int PageCount
         {
             get
             {
-                return imageEntries.Length;
+                return imageEntries?.Length ?? 0;
             }
         }
-
-        public override ImageSource PageImage { get { return pageImage; } }
 
         public override void Close()
         {
             archive.Dispose();
         }
-        public override void GainFocus()
-        {
-            cts = new CancellationTokenSource();
-            unpackingTask = new Task(UnpackingMethod, cts.Token, TaskCreationOptions.LongRunning);
-            unpackingTask.Start();
-        }
-        public override void LostFocus()
-        {
-            cts?.Cancel();
-        }
 
         private SharpCompress.Archives.IArchive archive;
         private SharpCompress.Archives.IArchiveEntry[] imageEntries;
-
-        private int pageNumber;
-        private ImageSource pageImage;
-
-        private Task unpackingTask;
-        private CancellationTokenSource cts;
 
         private void FilterEntries()
         {
@@ -93,10 +44,11 @@ namespace Kola.Model
                 return ext == ".png" || ext == ".jpg" || ext == ".bmp";
             }).ToArray();
         }
-        private ImageSource GenerateImage()
+
+        protected override async Task<ImageSource> GetImage(int pageNumber, CancellationToken cancellationToken)
         {
             BitmapImage image = new BitmapImage();
-            Stream imgStream = imageEntries[PageNumber].OpenEntryStream();
+            Stream imgStream = imageEntries[pageNumber].OpenEntryStream();
             image.BeginInit();
             image.CacheOption = BitmapCacheOption.OnLoad;
             image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
@@ -105,7 +57,8 @@ namespace Kola.Model
 
             using (MemoryStream ms = new MemoryStream())
             {
-                imgStream.CopyTo(ms, (int)imageEntries[PageNumber].Size);
+                int size = (int)imageEntries[PageNumber].Size;
+                imgStream.CopyToAsync(ms, size, cancellationToken).Wait();
                 ms.Position = 0;
                 image.StreamSource = ms;
                 image.EndInit();
@@ -114,40 +67,6 @@ namespace Kola.Model
             image.Freeze();
             imgStream.Dispose();
             return image;
-        }
-
-        private async void UnpackingMethod()
-        {
-            int currentPage = pageNumber;
-            while(true)
-            {
-                currentPage = pageNumber;
-                pageImage = null;
-                Changed(nameof(PageImage));
-                if (cts.IsCancellationRequested)
-                {
-                    break;
-                }
-                ImageSource source = GenerateImage();
-                if(cts.IsCancellationRequested)
-                {
-                    break;
-                }
-                if(currentPage != pageNumber)
-                {
-                    continue;
-                }
-                pageImage = source;
-                Changed(nameof(PageImage));
-                while (currentPage == pageNumber) //Wait while page is not changed.
-                {
-                    if (cts.IsCancellationRequested)
-                    {
-                        break;
-                    }
-                    await Task.Delay(10);
-                }
-            }
         }
     }
 }
