@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace Kola.Model
     /// <summary>
     /// Base class representing a file on disc which can be open by Kola
     /// </summary>
-    public abstract class ComicBook
+    public abstract class ComicBook : INotifyPropertyChanged
     {
         /// <summary>
         /// Constructor.
@@ -41,6 +42,8 @@ namespace Kola.Model
         /// </summary>
         public abstract ImageSource PageImage { get; }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
         /// Invoked when tab is being closed.
         /// </summary>
@@ -67,6 +70,11 @@ namespace Kola.Model
         public void PreviousPage()
         {
             PageNumber--;
+        }
+
+        protected void Changed(string property)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
     }
 }

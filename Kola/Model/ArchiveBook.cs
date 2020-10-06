@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 
 namespace Kola.Model
 {
-    class ArchiveBook : ComicBook, INotifyPropertyChanged
+    class ArchiveBook : ComicBook
     {
         public ArchiveBook(string path) : base(path)
         {
@@ -77,8 +77,6 @@ namespace Kola.Model
             cts?.Cancel();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private SharpCompress.Archives.IArchive archive;
         private SharpCompress.Archives.IArchiveEntry[] imageEntries;
 
@@ -87,11 +85,6 @@ namespace Kola.Model
 
         private Task unpackingTask;
         private CancellationTokenSource cts;
-
-        private void Changed(string prop)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
 
         private void FilterEntries()
         {
