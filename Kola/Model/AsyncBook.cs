@@ -70,34 +70,36 @@ namespace Kola.Model
         private async void UnpackingMethod()
         {
             int currentPage;
-            while (true)
+            try
             {
-                currentPage = pageNumber;
-                pageImage = null;
-                Changed(nameof(PageImage));
-                if (cts.IsCancellationRequested)
+                while (true)
                 {
-                    break;
-                }
-                ImageSource source = await GetImage(pageNumber, cts.Token);
-                if (cts.IsCancellationRequested)
-                {
-                    break;
-                }
-                if (currentPage != pageNumber)
-                {
-                    continue;
-                }
-                pageImage = source;
-                Changed(nameof(PageImage));
-                while (currentPage == pageNumber) //Wait while page is not changed.
-                {
-                    if (cts.IsCancellationRequested)
+                    currentPage = pageNumber;
+                    pageImage = null;
+                    Changed(nameof(PageImage));
+                    cts.Token.ThrowIfCancellationRequested();
+                    ImageSource source = await GetImage(pageNumber, cts.Token);
+                    cts.Token.ThrowIfCancellationRequested();
+                    if (currentPage != pageNumber)
                     {
-                        break;
+                        continue;
                     }
-                    await Task.Delay(10);
+                    pageImage = source;
+                    Changed(nameof(PageImage));
+                    while (currentPage == pageNumber) //Wait while page is not changed.
+                    {
+                        cts.Token.ThrowIfCancellationRequested();
+                        await Task.Delay(10);
+                    }
                 }
+            }
+            catch(OperationCanceledException e)
+            {
+
+            }
+            catch(Exception e)
+            {
+                throw e;
             }
         }
 
