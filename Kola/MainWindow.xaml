@@ -45,12 +45,10 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="200" />
         </Grid.RowDefinitions>
-        <controls:Tabs
+        <controls:Titlebar
             x:Name="tabs"
             Grid.Column="0" Grid.ColumnSpan="3"
             Grid.Row="0"
-            TabNames="{Binding Tabs, Converter={StaticResource ComicBookArrToStrConv}}"
-            SelectedIndex="{Binding SelectedTabIndex}"
             />
         <Image
             x:Name="Image"
