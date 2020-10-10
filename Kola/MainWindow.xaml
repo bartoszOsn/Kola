@@ -13,7 +13,7 @@
     <Window.Resources>
         <model:ComicBookArrayToStringArrayConverter x:Key="ComicBookArrToStrConv" />
         <local:IntToPlus1Converter x:Key="plus1Converter" />
-        <shell:WindowChrome x:Key="chrome" GlassFrameThickness="0" CaptionHeight="40" CornerRadius="0" NonClientFrameEdges="Top" />
+        <shell:WindowChrome x:Key="chrome" GlassFrameThickness="0" CaptionHeight="35" CornerRadius="0" NonClientFrameEdges="Top" />
     </Window.Resources>
     <Window.Style>
         <Style TargetType="{x:Type local:MainWindow}">
@@ -41,7 +41,7 @@
             <ColumnDefinition Width="100" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:MainWindow}}, Path=Resources[chrome].CaptionHeight}" />
+            <RowDefinition Height="35" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="200" />
         </Grid.RowDefinitions>
