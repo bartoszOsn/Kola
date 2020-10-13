@@ -86,7 +86,9 @@ namespace Kola.Model
         {
             ComicBook tab = Tabs[index];
             tab.Close();
-            Tabs.RemoveAt(index);
+            //TODO: Make sure it works properly.
+            App.Current?.Dispatcher.Invoke(() => Tabs.RemoveAt(index));
+            //Tabs.RemoveAt(index);
             if(index < SelectedTabIndex)
             {
                 SelectedTabIndex--;
