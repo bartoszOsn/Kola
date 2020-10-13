@@ -43,8 +43,12 @@ namespace Kola.Model
                 }
                 
                 selectedTabIndex = value;
-                Tabs.ElementAtOrDefault(selectedTabIndex).GainFocus();
-                Tabs.ElementAtOrDefault(selectedTabIndex).IsSelected = true;
+
+                if (selectedTabIndex >= 0 && selectedTabIndex < Tabs.Count)
+                {
+                    Tabs[selectedTabIndex].GainFocus();
+                    Tabs[selectedTabIndex].IsSelected = true;
+                }
                 Changed(nameof(SelectedTabIndex));
                 Changed(nameof(SelectedTab));
             }

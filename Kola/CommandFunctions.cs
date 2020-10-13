@@ -35,12 +35,20 @@ namespace Kola
 
         public void SelectTab(object sender, ExecutedRoutedEventArgs e)
         {
-            Window.Model.SelectedTabIndex = (int)e.Parameter;
+            if(e.Parameter is int)
+            {
+                Window.Model.SelectedTabIndex = (int)e.Parameter;
+            }
+            else if (e.Parameter is ComicBook)
+            {
+                Window.Model.SelectedTabIndex = Window.Model.Tabs.IndexOf((ComicBook)e.Parameter);
+            }
+            
         }
 
         public void CanSelectTab(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = e.Parameter is int && (int)e.Parameter < Window.Model.Tabs.Count;
+            e.CanExecute = (e.Parameter is int && (int)e.Parameter < Window.Model.Tabs.Count) || (e.Parameter is ComicBook && Window.Model.Tabs.Contains((ComicBook)e.Parameter));
         }
 
         public void CloseTab(object sender, ExecutedRoutedEventArgs e)
@@ -57,7 +65,7 @@ namespace Kola
 
         public void CanCloseTab(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = (int)e.Parameter < Window.Model.Tabs.Count;
+            e.CanExecute = (e.Parameter is int && (int)e.Parameter < Window.Model.Tabs.Count) || (e.Parameter is ComicBook && Window.Model.Tabs.Contains((ComicBook)e.Parameter));
         }
 
         public void OpenSettings(object sender, ExecutedRoutedEventArgs e)

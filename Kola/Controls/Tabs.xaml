@@ -21,7 +21,46 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type model:ComicBook}">
-                    <Button Content="{Binding Name}" />
+                    <Button Content="{Binding Name}" Margin="1,0,1,-1" Command="{x:Static kola:AppCommands.SelectTab}" CommandParameter="{Binding }" WindowChrome.IsHitTestVisibleInChrome="True">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border>
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="BorderThickness" Value="0, 3, 0, 0" />
+                                            <Setter Property="BorderBrush" Value="Transparent" />
+                                            <Setter Property="Background" Value="{StaticResource SecondaryColorVariant}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                    <Setter Property="BorderBrush" Value="{StaticResource PrimaryColorVariant}" />
+                                                    <Setter Property="Background" Value="{StaticResource BackgroundColor}" />
+                                                </DataTrigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="BorderBrush" Value="{StaticResource SecondaryColorVariant}" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <DockPanel>
+                                        <Button DockPanel.Dock="Right" Command="{x:Static kola:AppCommands.CloseTab}" CommandParameter="{Binding }" Content="&#xf00d;">
+                                            <Button.Style>
+                                                <Style TargetType="Button" BasedOn="{StaticResource TitlebarButton}">
+                                                    <Setter Property="Background" Value="Transparent" />
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="Transparent" />
+                                                            <Setter Property="Foreground" Value="{StaticResource PrimaryColorVariant}" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                        <ContentPresenter x:Name="Content" Margin="10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextBlock.Foreground="{StaticResource PrimaryColor}" />
+                                    </DockPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
 
                 </DataTemplate>
