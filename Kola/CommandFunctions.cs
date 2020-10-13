@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kola.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,7 +45,14 @@ namespace Kola
 
         public void CloseTab(object sender, ExecutedRoutedEventArgs e)
         {
-            Window.Model.Close((int)e.Parameter);
+            if(e.Parameter is ComicBook)
+            {
+                Window.Model.Close((ComicBook)e.Parameter);
+            }
+            else if (e.Parameter is int)
+            {
+                Window.Model.Close((int)e.Parameter);
+            }
         }
 
         public void CanCloseTab(object sender, CanExecuteRoutedEventArgs e)

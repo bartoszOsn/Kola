@@ -36,9 +36,15 @@ namespace Kola.Model
             }
             set
             {
-                Tabs.ElementAtOrDefault(selectedTabIndex)?.LostFocus();
+                if(selectedTabIndex >= 0 && selectedTabIndex < Tabs.Count)
+                {
+                    Tabs[selectedTabIndex].LostFocus();
+                    Tabs[selectedTabIndex].IsSelected = false;
+                }
+                
                 selectedTabIndex = value;
-                Tabs.ElementAtOrDefault(selectedTabIndex)?.GainFocus();
+                Tabs.ElementAtOrDefault(selectedTabIndex).GainFocus();
+                Tabs.ElementAtOrDefault(selectedTabIndex).IsSelected = true;
                 Changed(nameof(SelectedTabIndex));
                 Changed(nameof(SelectedTab));
             }
@@ -100,6 +106,12 @@ namespace Kola.Model
                 //Trigger INotifyPropertyChanged
                 SelectedTabIndex = SelectedTabIndex;
             }
+        }
+
+        public void Close(ComicBook book)
+        {
+            int index = Tabs.IndexOf(book);
+            Close(index);
         }
 
         private int selectedTabIndex;

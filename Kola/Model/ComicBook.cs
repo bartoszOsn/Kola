@@ -40,9 +40,21 @@ namespace Kola.Model
         /// <summary>
         /// ImageSource of current page.
         /// </summary>
+        
+        public bool IsSelected
+        {
+            get => isSelected;
+            set
+            {
+                isSelected = value;
+                Changed(nameof(IsSelected));
+            }
+        }
         public abstract ImageSource PageImage { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private bool isSelected = false;
 
         /// <summary>
         /// Invoked when tab is being closed.
