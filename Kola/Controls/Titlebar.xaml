@@ -10,6 +10,7 @@
              d:DesignHeight="50" d:DesignWidth="800"
              Background="{StaticResource BackgroundColorVariant}">
     <DockPanel LastChildFill="False">
+        <Image Source="/icon.ico" DockPanel.Dock="Left" Margin="5"/>
         <StackPanel DockPanel.Dock="Right" ScrollViewer.VerticalScrollBarVisibility="Disabled" Orientation="Horizontal">
             <StackPanel.Resources>
                 <Style TargetType="Button" BasedOn="{StaticResource TitlebarButton}" />
