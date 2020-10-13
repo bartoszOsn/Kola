@@ -29,7 +29,7 @@
                                         <Style TargetType="Border">
                                             <Setter Property="BorderThickness" Value="0, 3, 0, 0" />
                                             <Setter Property="BorderBrush" Value="Transparent" />
-                                            <Setter Property="Background" Value="{StaticResource SecondaryColorVariant}" />
+                                            <Setter Property="Background" Value="{StaticResource SecondaryColor}" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding IsSelected}" Value="True">
                                                     <Setter Property="BorderBrush" Value="{StaticResource PrimaryColorVariant}" />
@@ -42,7 +42,7 @@
                                         </Style>
                                     </Border.Style>
                                     <DockPanel>
-                                        <Button DockPanel.Dock="Right" Command="{x:Static kola:AppCommands.CloseTab}" CommandParameter="{Binding }" Content="&#xf00d;">
+                                        <Button DockPanel.Dock="Right" Margin="3" Command="{x:Static kola:AppCommands.CloseTab}" CommandParameter="{Binding }" Content="&#xf00d;">
                                             <Button.Style>
                                                 <Style TargetType="Button" BasedOn="{StaticResource TitlebarButton}">
                                                     <Setter Property="Background" Value="Transparent" />
