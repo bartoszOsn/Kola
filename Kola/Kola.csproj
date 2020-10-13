@@ -97,6 +97,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\Tabs.xaml.cs">
+      <DependentUpon>Tabs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Titlebar.xaml.cs">
       <DependentUpon>Titlebar.xaml</DependentUpon>
     </Compile>
@@ -136,9 +139,6 @@
     </Compile>
     <Compile Include="Controls\PageChanger.xaml.cs">
       <DependentUpon>PageChanger.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Tabs.xaml.cs">
-      <DependentUpon>Tabs.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TrackBar.xaml.cs">
       <DependentUpon>TrackBar.xaml</DependentUpon>

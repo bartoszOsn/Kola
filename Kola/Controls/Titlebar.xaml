@@ -42,5 +42,6 @@
             </ContentPresenter>
             <Button Command="{x:Static kola:AppCommands.CloseWindow}">&#xf410;</Button>
         </StackPanel>
+        <local:Tabs />
     </DockPanel>
 </UserControl>
