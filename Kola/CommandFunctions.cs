@@ -79,8 +79,9 @@ namespace Kola
 
         public void OpenSettings(object sender, ExecutedRoutedEventArgs e)
         {
-            //TODO implement
-            MessageBox.Show("There are no settings for now you silly!");
+            SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.Owner = Window;
+            settingsWindow.ShowDialog();
         }
 
         public void CanOpenSettings(object senter, CanExecuteRoutedEventArgs e)
