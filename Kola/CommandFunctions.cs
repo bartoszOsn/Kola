@@ -1,6 +1,7 @@
 ﻿using Kola.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,9 +25,15 @@ namespace Kola
             Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
             dialog.Multiselect = true;
             dialog.Filter = ComicBookFactory.GetFilter();
-            Console.WriteLine(dialog.Filter);
             dialog.ShowDialog(Window);
-            Window.Model.Add(dialog.FileNames);
+            try
+            {
+                Window.Model.Add(dialog.FileNames);
+            }
+            catch(FileFormatException exeption)
+            {
+                MessageBox.Show(exeption.Message, "File not supported", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             Window.CommandBindings.Add(new System.Windows.Input.CommandBinding());
         }
 
