@@ -10,29 +10,59 @@ namespace Kola
 {
     static class ComicBookFactory
     {
+        struct FormatInfo
+        {
+            public string[] Formats { get; set; }
+            public string Description { get; set; }
+            public Func<string, ComicBook> Opener { get; set; }
+            public FormatInfo(string[] formats, string desc, Func<string, ComicBook> opener)
+            {
+                Formats = formats;
+                Description = desc;
+                Opener = opener;
+            }
+        }
         static public ComicBook Create(string path)
         {
             string extension = Path.GetExtension(path);
-            if(creators.ContainsKey(extension))
+            if(hasFormat(extension))
             {
-                return creators[extension].Invoke(path);
+                return GetFormat(extension).Opener.Invoke(path);
             }
             else
             {
                 throw new FileFormatException(String.Format("Can't open file with extension \"{0}\".", extension));
             }
         }
+        
+        static public string GetFilter()
+        {
+            return string.Join("|",
+                creators.Select(t =>
+                {
+                    string filter = string.Join(";", t.Formats.Select(u=> "*" + u));
+                    return $"{t.Description} ({filter})|{filter}";
+                })) + "|All files (*.*)|*.*";
+        }
 
-        private static Dictionary<string, Func<string, ComicBook>> creators;
+        private static FormatInfo[] creators;
         static ComicBookFactory()
         {
-            creators = new Dictionary<string, Func<string, ComicBook>>()
+            creators = new FormatInfo[]
             {
-                {".cbz",  CreateArchiveBook},
-                {".zip",  CreateArchiveBook},
-                {".cbr", CreateArchiveBook },
-                {".rar", CreateArchiveBook }
+                new FormatInfo(new string[]{".cbr", ".cbz"}, "Comic book archives", CreateArchiveBook),
+                new FormatInfo(new string[]{".rar", ".zip"}, "Archives", CreateArchiveBook)
             };
+        }
+
+        private static bool hasFormat(string f)
+        {
+            return creators.Any(t => t.Formats.Contains(f));
+        }
+
+        private static FormatInfo GetFormat(string f)
+        {
+            return creators.First(t => t.Formats.Contains(f));
         }
 
         private static ComicBook CreateArchiveBook(string path)

@@ -23,6 +23,8 @@ namespace Kola
         {
             Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
             dialog.Multiselect = true;
+            dialog.Filter = ComicBookFactory.GetFilter();
+            Console.WriteLine(dialog.Filter);
             dialog.ShowDialog(Window);
             Window.Model.Add(dialog.FileNames);
             Window.CommandBindings.Add(new System.Windows.Input.CommandBinding());
