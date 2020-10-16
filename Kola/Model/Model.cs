@@ -81,7 +81,7 @@ namespace Kola.Model
             }
             catch(FileNotFoundException e)
             {
-                MessageBox.Show("No file", String.Format("There is no file {0}", e.FileName), MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(String.Format("There is no file {0}", e.FileName), "No file", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             Tabs.Add(book);

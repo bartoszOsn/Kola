@@ -24,6 +24,10 @@ namespace Kola
         }
         static public ComicBook Create(string path)
         {
+            if(!File.Exists(path))
+            {
+                throw new FileNotFoundException($"File '{path}' is not found.", path);
+            }
             string extension = Path.GetExtension(path);
             if(hasFormat(extension))
             {

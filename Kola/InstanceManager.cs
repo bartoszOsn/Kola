@@ -36,7 +36,11 @@ namespace Kola
         }
         ~InstanceManager()
         {
-            mutex.Dispose();
+            if(IsOpen)
+            {
+                Close();
+            }
+            
 
         }
         public void Start(string[] args)
@@ -61,6 +65,7 @@ namespace Kola
             if(IsServer)
             {
                 mutex.ReleaseMutex();
+                mutex.Dispose();
             }
             IsOpen = false;
         }
