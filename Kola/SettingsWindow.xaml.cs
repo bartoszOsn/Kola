@@ -14,9 +14,17 @@ using System.Windows.Shapes;
 
 namespace Kola
 {
+    /*
+     * setting are:
+     *      How many pages in memory?
+     *      Remember the page that closed tab was at
+     *      Allow to open many tabs with same file
+     *      
+     * */
+
     /// <summary>
     /// Interaction logic for SettingsWindow.xaml
-    /// </summary>
+    /// </summary
     public partial class SettingsWindow : Window
     {
         public SettingsWindow()

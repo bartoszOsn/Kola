@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Kola.Model
 {
@@ -77,6 +78,11 @@ namespace Kola.Model
             catch(FileFormatException e)
             {
                 throw e;
+            }
+            catch(FileNotFoundException e)
+            {
+                MessageBox.Show("No file", String.Format("There is no file {0}", e.FileName), MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
             Tabs.Add(book);
             if(Tabs.Count == 1)
