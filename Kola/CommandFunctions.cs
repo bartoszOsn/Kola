@@ -79,7 +79,7 @@ namespace Kola
 
         public void OpenSettings(object sender, ExecutedRoutedEventArgs e)
         {
-
+            Window.tabs.SettingsPopup.IsOpen = true;
         }
 
         public void CanOpenSettings(object senter, CanExecuteRoutedEventArgs e)
