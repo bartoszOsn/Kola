@@ -79,9 +79,7 @@ namespace Kola
 
         public void OpenSettings(object sender, ExecutedRoutedEventArgs e)
         {
-            SettingsWindow settingsWindow = new SettingsWindow();
-            settingsWindow.Owner = Window;
-            settingsWindow.ShowDialog();
+
         }
 
         public void CanOpenSettings(object senter, CanExecuteRoutedEventArgs e)

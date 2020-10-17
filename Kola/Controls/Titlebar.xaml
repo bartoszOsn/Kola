@@ -15,6 +15,7 @@
             <StackPanel.Resources>
                 <Style TargetType="Button" BasedOn="{StaticResource TitlebarButton}" />
             </StackPanel.Resources>
+            <Button Command="{x:Static kola:AppCommands.OpenSettings}">&#xf518;</Button>
             <Button Command="{x:Static kola:AppCommands.OpenSettings}">&#xf013;</Button>
             <Button Command="{x:Static kola:AppCommands.MinizeWindow}">&#xf2d1;</Button>
             <ContentPresenter Content="">
