@@ -10,24 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Kola
+namespace Kola.Controls
 {
-    /*
-     * setting are:
-     *      How many pages in memory?
-     *      Remember the page that closed tab was at
-     *      Allow to open many tabs with same file
-     *      
-     * */
-
     /// <summary>
-    /// Interaction logic for SettingsWindow.xaml
-    /// </summary
-    public partial class SettingsWindow : Window
+    /// Interaction logic for SettingsControlxaml.xaml
+    /// </summary>
+    public partial class SettingsControlxaml : UserControl
     {
-        public SettingsWindow()
+        public SettingsControlxaml()
         {
             InitializeComponent();
         }

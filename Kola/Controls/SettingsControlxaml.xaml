@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="Kola.Controls.SettingsControlxaml"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Kola.Controls"
+             mc:Ignorable="d"
+             Background="{StaticResource SecondaryColor}"
+             d:DesignHeight="500" d:DesignWidth="450">
+    <StackPanel Margin="20">
+        <TextBlock FontWeight="Bold" FontSize="48">Settings</TextBlock>
+    </StackPanel>
+</UserControl>
