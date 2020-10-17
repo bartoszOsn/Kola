@@ -104,6 +104,7 @@
       <DependentUpon>Titlebar.xaml</DependentUpon>
     </Compile>
     <Compile Include="InstanceManager.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
