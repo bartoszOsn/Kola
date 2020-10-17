@@ -8,6 +8,7 @@ using System.Windows.Media;
 
 namespace Kola.Model
 {
+    //TODO: load many pages to memory at once, to avoid delay in displaing then when page is changed.
     /// <summary>
     /// Base class for books with asynchronic generation of page images. 
     /// </summary>
