@@ -22,5 +22,29 @@ namespace Kola.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int PagesInMemoryCount {
+            get {
+                return ((int)(this["PagesInMemoryCount"]));
+            }
+            set {
+                this["PagesInMemoryCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string AsociatedExtensions {
+            get {
+                return ((string)(this["AsociatedExtensions"]));
+            }
+            set {
+                this["AsociatedExtensions"] = value;
+            }
+        }
     }
 }
