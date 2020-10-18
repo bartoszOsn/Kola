@@ -94,7 +94,7 @@ namespace Kola
 
         public void CanNextPage(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = Window.Model.SelectedTab.PageNumber < Window.Model.SelectedTab.PageCount - 1;
+            e.CanExecute = Window.Model.SelectedTab != null && Window.Model.SelectedTab.PageNumber < Window.Model.SelectedTab.PageCount - 1;
         }
 
         public void PreviousPage(object sender, ExecutedRoutedEventArgs e)
@@ -104,7 +104,7 @@ namespace Kola
 
         public void CanPreviousPage(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = Window.Model.SelectedTab.PageNumber > 0;
+            e.CanExecute = Window.Model.SelectedTab != null && Window.Model.SelectedTab.PageNumber > 0;
         }
 
         public void Close(object sender, ExecutedRoutedEventArgs e)

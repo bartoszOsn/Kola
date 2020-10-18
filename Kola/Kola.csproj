@@ -106,6 +106,7 @@
     <Compile Include="Controls\Titlebar.xaml.cs">
       <DependentUpon>Titlebar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ToggleListEx.cs" />
     <Compile Include="InstanceManager.cs" />
     <Compile Include="MarkupExtensions\SettingsBindingMarkupExtension.cs" />
     <Compile Include="Settings.cs" />

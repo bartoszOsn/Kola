@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace Kola
 {
+    public struct FormatInfo
+    {
+        public string[] Formats { get; set; }
+        public string Description { get; set; }
+        public Func<string, ComicBook> Opener { get; set; }
+        public FormatInfo(string[] formats, string desc, Func<string, ComicBook> opener)
+        {
+            Formats = formats;
+            Description = desc;
+            Opener = opener;
+        }
+    }
     static class ComicBookFactory
     {
-        struct FormatInfo
-        {
-            public string[] Formats { get; set; }
-            public string Description { get; set; }
-            public Func<string, ComicBook> Opener { get; set; }
-            public FormatInfo(string[] formats, string desc, Func<string, ComicBook> opener)
-            {
-                Formats = formats;
-                Description = desc;
-                Opener = opener;
-            }
-        }
         static public ComicBook Create(string path)
         {
             if(!File.Exists(path))
@@ -48,6 +48,8 @@ namespace Kola
                     return $"{t.Description} ({filter})|{filter}";
                 })) + "|All files (*.*)|*.*";
         }
+
+        static public FormatInfo[] Creators { get => creators; }
 
         private static FormatInfo[] creators;
         static ComicBookFactory()
