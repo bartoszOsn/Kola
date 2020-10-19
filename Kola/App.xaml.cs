@@ -18,8 +18,8 @@ namespace Kola
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             //TEST
-            var pages = Task.Run(()=> Helpers.Wiki.Wiki.Search("javascript")).Result;
-            var content = pages.Select(t => Task.Run(() => t.GetContent()).Result).ToList();
+            //var pages = Task.Run(()=> Helpers.Wiki.Wiki.Search("javascript")).Result;
+            //var content = pages.Select(t => Task.Run(() => t.GetContent()).Result).ToList();
             //TEST
 
             MainWindow window = null;
