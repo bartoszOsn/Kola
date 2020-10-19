@@ -10,7 +10,7 @@
              mc:Ignorable="d"
              
              d:DesignHeight="500" d:DesignWidth="450">
-    <Border CornerRadius="30" Background="{StaticResource SecondaryColor}" BorderThickness="3" BorderBrush="{StaticResource SecondaryColorVariant}">
+    <Border CornerRadius="3" Background="{StaticResource SecondaryColor}" BorderThickness="3" BorderBrush="{StaticResource SecondaryColorVariant}">
         <StackPanel Margin="20">
             <TextBlock FontWeight="Bold" FontSize="48">Settings</TextBlock>
             <TextBlock FontWeight="Bold" FontSize="36">General Settings</TextBlock>

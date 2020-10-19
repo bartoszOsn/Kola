@@ -107,7 +107,6 @@
       <DependentUpon>Titlebar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ToggleListEx.cs" />
-    <Compile Include="Helpers\Wiki.cs" />
     <Compile Include="Helpers\Wiki\Wiki.cs" />
     <Compile Include="Helpers\Wiki\WikiPage.cs" />
     <Compile Include="Helpers\Wiki\Wikipedia.cs" />
