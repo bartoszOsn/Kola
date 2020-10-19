@@ -17,6 +17,11 @@ namespace Kola
         public InstanceManager InstanceManager { get; set; }
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            //TEST
+            var pages = Task.Run(()=> Helpers.Wiki.Wiki.Search("javascript")).Result;
+            var content = pages.Select(t => Task.Run(() => t.GetContent()).Result).ToList();
+            //TEST
+
             MainWindow window = null;
             Model.Model model = new Model.Model();
             InstanceManager = new InstanceManager("Kola.ComicBookReader");

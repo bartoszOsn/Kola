@@ -20,9 +20,19 @@ namespace Kola.Helpers.Wiki
             this.Title = pageTitle;
         }
 
-        public async Task<string> GetContent()
+        public async Task<string> GetContent(bool fullHTML = true)
         {
-            return await project.GetPageContent(ID);
+            string content = await project.GetPageContent(ID);
+            if(fullHTML)
+            {
+                content = $"<html><head><style>{Properties.Resources.load}</style></head><body style=\"margin: 20px;\">{content}</body></html>";
+            }
+            return content;
+        }
+
+        public override string ToString()
+        {
+            return $"{Title} [{ProjectName}]";
         }
     }
 }

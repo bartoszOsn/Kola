@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Kola.Properties
-{
-
-
+namespace Kola.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -19,52 +19,114 @@ namespace Kola.Properties
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Kola.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .mediaContainer,
+        ///.PopUpMediaTransform {
+        /// position:relative;
+        /// display:block
+        ///}
+        ///.thumb .mediaContainer,
+        ///.thumb .PopUpMediaTransform {
+        /// margin:0 auto
+        ///}
+        ///#p-lang .uls-settings-trigger {
+        /// background:transparent url(/w/extensions/UniversalLanguageSelector/resources/images/cog-sprite.svg?c3fa1) no-repeat center top;
+        /// border:0;
+        /// min-height:16px;
+        /// min-width:16px;
+        /// float:right;
+        /// cursor:pointer
+        ///}
+        ///#p-lang .uls-settings-trigger::-moz-focus-inner {
+        /// border:0
+        ///}
+        ///#p-lang .uls-settings-trigger:focus {
+        /// outline:1px solid #36c
+        ///} [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string load {
+            get {
+                return ResourceManager.GetString("load", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /*
+        ///
+        ///Common CSS for all skins
+        ///
+        ///See https://phabricator.wikimedia.org/M82 for standard colors
+        ///
+        ///*/
+        ///
+        ////* Larger conditions-area in AbuseFilter for some */
+        ///#wpFilterRules {
+        ///    min-height: 250px;
+        ///}
+        ///
+        ////* Larger notes-area in AbuseFilter for some */
+        ///#wpFilterNotes {
+        ///    min-height: 150px;
+        ///}
+        ///
+        ////* Style for &quot;notices&quot; */
+        ///.notice {
+        ///    text-align: justify;
+        ///    margin: 1em;
+        ///    padding: 0.2em;
+        ///}
+        ///
+        ///#disambig {
+        ///    border-top: 3px double #c8ccd1;
+        ///    border-bottom: 3px double #c8ccd1;
+        ///}
+        ///
+        ////* Add  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string WikiStyle {
+            get {
+                return ResourceManager.GetString("WikiStyle", resourceCulture);
             }
         }
     }
