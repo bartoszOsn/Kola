@@ -107,6 +107,12 @@
       <DependentUpon>Titlebar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ToggleListEx.cs" />
+    <Compile Include="Helpers\Wiki.cs" />
+    <Compile Include="Helpers\Wiki\Wiki.cs" />
+    <Compile Include="Helpers\Wiki\WikiPage.cs" />
+    <Compile Include="Helpers\Wiki\Wikipedia.cs" />
+    <Compile Include="Helpers\Wiki\WikiProject.cs" />
+    <Compile Include="Helpers\Wiki\Wiktionary.cs" />
     <Compile Include="InstanceManager.cs" />
     <Compile Include="MarkupExtensions\SettingsBindingMarkupExtension.cs" />
     <Compile Include="Settings.cs" />
@@ -205,5 +211,6 @@
   <ItemGroup>
     <Resource Include="icon.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

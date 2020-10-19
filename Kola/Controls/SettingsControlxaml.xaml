@@ -6,41 +6,44 @@
              xmlns:local="clr-namespace:Kola.Controls"
              xmlns:kola="clr-namespace:Kola"
              xmlns:me="clr-namespace:Kola.MarkupExtensions"
+             Background="Transparent"
              mc:Ignorable="d"
-             Background="{StaticResource SecondaryColor}"
+             
              d:DesignHeight="500" d:DesignWidth="450">
-    <StackPanel Margin="20">
-        <TextBlock FontWeight="Bold" FontSize="48">Settings</TextBlock>
-        <TextBlock FontWeight="Bold" FontSize="36">General Settings</TextBlock>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Margin="0,0,10,0" MaxWidth="200" TextWrapping="Wrap">How many pages should be loaded into memory at once?</TextBlock>
-            <TextBox Text="{me:SettingsBindingMarkup PagesInMemoryCount}" MinWidth="50" UseLayoutRounding="False" VerticalAlignment="Center" />
-        </StackPanel>
-        <TextBlock FontWeight="Bold" FontSize="36">Extensions association</TextBlock>
-        <ItemsControl ItemsSource="{x:Static kola:ComicBookFactory.Creators}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate DataType="{x:Type kola:FormatInfo}">
-                    <StackPanel>
-                        <TextBlock Text="{Binding Description}" />
-                        <ItemsControl ItemsSource="{Binding Formats}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate DataType="string">
-                                    <CheckBox
+    <Border CornerRadius="30" Background="{StaticResource SecondaryColor}" BorderThickness="3" BorderBrush="{StaticResource SecondaryColorVariant}">
+        <StackPanel Margin="20">
+            <TextBlock FontWeight="Bold" FontSize="48">Settings</TextBlock>
+            <TextBlock FontWeight="Bold" FontSize="36">General Settings</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="0,0,10,0" MaxWidth="200" TextWrapping="Wrap">How many pages should be loaded into memory at once?</TextBlock>
+                <TextBox Text="{me:SettingsBindingMarkup PagesInMemoryCount}" MinWidth="50" UseLayoutRounding="False" VerticalAlignment="Center" />
+            </StackPanel>
+            <TextBlock FontWeight="Bold" FontSize="36">Extensions association</TextBlock>
+            <ItemsControl ItemsSource="{x:Static kola:ComicBookFactory.Creators}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type kola:FormatInfo}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Description}" />
+                            <ItemsControl ItemsSource="{Binding Formats}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="string">
+                                        <CheckBox
                                         Content="{Binding }"
                                         kola:ToggleListEx.List="{me:SettingsBindingMarkup AsociatedExtensions}"
                                         kola:ToggleListEx.Element="{Binding }"
                                         Margin="10, 0, 0, 0" />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal" />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                        </ItemsControl>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
                         </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Border>
 </UserControl>

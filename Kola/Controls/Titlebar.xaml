@@ -17,7 +17,7 @@
             </StackPanel.Resources>
             <Button Command="{x:Static kola:AppCommands.OpenSettings}">&#xf518;</Button>
             <Button x:Name="SettingsButton" Command="{x:Static kola:AppCommands.OpenSettings}">&#xf013;</Button>
-            <Popup x:Name="SettingsPopup" PlacementTarget="{Binding ElementName=SettingsButton}" Placement="Bottom" HorizontalOffset="-100" StaysOpen="False">
+            <Popup x:Name="SettingsPopup" AllowsTransparency="True" PlacementTarget="{Binding ElementName=SettingsButton}" Placement="Bottom" HorizontalOffset="-100" StaysOpen="False">
                 <local:SettingsControlxaml />
             </Popup>
             <Button Command="{x:Static kola:AppCommands.MinizeWindow}">&#xf2d1;</Button>
