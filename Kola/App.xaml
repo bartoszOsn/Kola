@@ -41,7 +41,12 @@
                 </Setter>
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="{StaticResource SecondaryColor}" />
+                        <Setter Property="Background" >
+                            <Setter.Value>
+                                <SolidColorBrush Color="{Binding Source={StaticResource PrimaryColor}, Path=Color}" Opacity="0.05" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Foreground" Value="{StaticResource SecondaryColor}" />
                     </Trigger>
                 </Style.Triggers>
             </Style>
