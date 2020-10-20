@@ -15,9 +15,10 @@
             <SolidColorBrush x:Key="PrimaryColor" Color="#37ABC8"/>
             <SolidColorBrush x:Key="SecondaryColor" Color="#89043D"/>
             <SolidColorBrush x:Key="BackgroundColor" Color="#070707"/>
-            <SolidColorBrush x:Key="PrimaryColorVariant" Color="#003052"/>
+            <SolidColorBrush x:Key="PrimaryColorVariant" Color="#001829"/>
+
             <SolidColorBrush x:Key="SecondaryColorVariant" Color="#3B021B"/>
-            <SolidColorBrush x:Key="BackgroundColorVariant" Color="#292929"/>
+            <SolidColorBrush x:Key="BackgroundColorVariant" Color="#141414"/>
 
             <FontFamily x:Key="FontAwesome">/fonts/fa-solid-900.ttf#Font Awesome 5 Free Solid</FontFamily>
 
