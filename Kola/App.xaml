@@ -5,12 +5,19 @@
              Startup="Application_Startup">
     <Application.Resources>
         <ResourceDictionary>
-            <SolidColorBrush x:Key="PrimaryColor" Color="#FFD9E6F7"/>
+            <!--<SolidColorBrush x:Key="PrimaryColor" Color="#FFD9E6F7"/>
             <SolidColorBrush x:Key="SecondaryColor" Color="#FF777777"/>
             <SolidColorBrush x:Key="BackgroundColor" Color="#252525"/>
             <SolidColorBrush x:Key="PrimaryColorVariant" Color="#FF95C2FC"/>
             <SolidColorBrush x:Key="SecondaryColorVariant" Color="#FFB6B6B6"/>
-            <SolidColorBrush x:Key="BackgroundColorVariant" Color="#FF525252"/>
+            <SolidColorBrush x:Key="BackgroundColorVariant" Color="#FF525252"/>-->
+
+            <SolidColorBrush x:Key="PrimaryColor" Color="#37ABC8"/>
+            <SolidColorBrush x:Key="SecondaryColor" Color="#89043D"/>
+            <SolidColorBrush x:Key="BackgroundColor" Color="#070707"/>
+            <SolidColorBrush x:Key="PrimaryColorVariant" Color="#003052"/>
+            <SolidColorBrush x:Key="SecondaryColorVariant" Color="#3B021B"/>
+            <SolidColorBrush x:Key="BackgroundColorVariant" Color="#292929"/>
 
             <FontFamily x:Key="FontAwesome">/fonts/fa-solid-900.ttf#Font Awesome 5 Free Solid</FontFamily>
 

@@ -29,14 +29,14 @@
                                         <Style TargetType="Border">
                                             <Setter Property="BorderThickness" Value="0, 3, 0, 0" />
                                             <Setter Property="BorderBrush" Value="Transparent" />
-                                            <Setter Property="Background" Value="{StaticResource SecondaryColor}" />
+                                            <Setter Property="Background" Value="{StaticResource BackgroundColorVariant}" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding IsSelected}" Value="True">
                                                     <Setter Property="BorderBrush" Value="{StaticResource PrimaryColorVariant}" />
                                                     <Setter Property="Background" Value="{StaticResource BackgroundColor}" />
                                                 </DataTrigger>
                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="BorderBrush" Value="{StaticResource SecondaryColorVariant}" />
+                                                    <Setter Property="BorderBrush" Value="{StaticResource PrimaryColor}" />
                                                 </Trigger>
                                             </Style.Triggers>
                                         </Style>

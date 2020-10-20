@@ -8,7 +8,7 @@
              xmlns:windows="clr-namespace:System.Windows;assembly=PresentationFramework"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="800"
-             Background="{StaticResource BackgroundColorVariant}">
+             Background="{StaticResource PrimaryColorVariant}">
     <DockPanel LastChildFill="False">
         <Image Source="/icon.ico" DockPanel.Dock="Left" Margin="5"/>
         <StackPanel DockPanel.Dock="Right" ScrollViewer.VerticalScrollBarVisibility="Disabled" Orientation="Horizontal">
