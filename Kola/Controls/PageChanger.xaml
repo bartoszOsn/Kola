@@ -42,7 +42,7 @@
             <ColumnDefinition Width="2*" />
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Rectangle Fill="{DynamicResource SecondaryColor}" Margin="0" Stroke="Black" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
+        <Rectangle Fill="{StaticResource PrimaryColorVariant}" Margin="0" Stroke="Black" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
         <Viewbox Grid.Row="1" Grid.Column="1">
             <Polygon Width="50" Height="100" Fill="{DynamicResource PrimaryColor}" Points="0,0 50,50 0,100 0,80 30,50 0,20" RenderTransformOrigin="0.5,0.5" >
                 <Polygon.Style>
