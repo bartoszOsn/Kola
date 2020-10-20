@@ -32,7 +32,7 @@ namespace Kola.Controls
 
         public WikiControl()
         {
-            DelayTime = TimeSpan.FromSeconds(1.0);
+            DelayTime = TimeSpan.FromSeconds(0.3);
             timer = new DispatcherTimer();
             timer.Tick += Timer_Tick;
             timer.Interval = DelayTime;
@@ -83,7 +83,7 @@ namespace Kola.Controls
                 Task.Run(() =>
                 {
                     var content = page.GetContent().Result;
-                    Dispatcher.Invoke(() => browser.LoadHtml(content));
+                    Dispatcher.Invoke(() => browser.LoadHtml(content, "http://wiki/" + page.ID));
                 });
                 //e.Handled = true;
             }

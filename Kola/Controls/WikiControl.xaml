@@ -51,7 +51,7 @@
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="5">
+                        <StackPanel Margin="5" HorizontalAlignment="Stretch">
                             <TextBlock Text="{Binding Title}" FontSize="24" />
                             <TextBlock Text="{Binding ProjectName}" FontSize="14" HorizontalAlignment="Right" />
                         </StackPanel>
