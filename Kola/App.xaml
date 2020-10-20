@@ -37,6 +37,13 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
+
+            <Style TargetType="Popup">
+                <Setter Property="Placement" Value="Bottom" />
+                <Setter Property="PlacementTarget" Value="{Binding Source={x:Static local:App.Current}, Path=Window}" />
+                <Setter Property="Width" Value="300" />
+                <Setter Property="Height" Value="500" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

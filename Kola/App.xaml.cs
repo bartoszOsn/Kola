@@ -15,6 +15,7 @@ namespace Kola
     public partial class App : Application
     {
         public InstanceManager InstanceManager { get; set; }
+        public MainWindow Window { get; private set; }
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             //TEST
@@ -22,7 +23,7 @@ namespace Kola
             //var content = pages.Select(t => Task.Run(() => t.GetContent()).Result).ToList();
             //TEST
 
-            MainWindow window = null;
+            Window = null;
             Model.Model model = new Model.Model();
             InstanceManager = new InstanceManager("Kola.ComicBookReader");
 
@@ -34,8 +35,8 @@ namespace Kola
             InstanceManager.Start(e.Args);
             if(InstanceManager.IsServer)
             {
-                window = new MainWindow(model);
-                window.Show();
+                Window = new MainWindow(model);
+                Window.Show();
             }
         }
         protected override void OnExit(ExitEventArgs e)
