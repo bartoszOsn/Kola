@@ -1,4 +1,5 @@
-﻿using Kola.Helpers.Wiki;
+﻿using CefSharp;
+using Kola.Helpers.Wiki;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,7 +40,7 @@ namespace Kola.Controls
             Pages = new ObservableCollection<WikiPage>();
             DataContext = this;
             InitializeComponent();
-            browser.Navigating += (s, e) => Console.WriteLine("Strona załadowana!!!");
+            
         }
 
         
@@ -51,6 +52,7 @@ namespace Kola.Controls
 
             timer.Stop();
             timer.Start();
+            //browser.LoadHtml("http://google.com");
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -77,19 +79,19 @@ namespace Kola.Controls
             WikiPage page = listBox.SelectedItem as WikiPage;
             if(page != null)
             {
-                browser.NavigateToString("<html><head></head><body></body></html>");
+                browser.LoadHtml("<html><head></head><body></body></html>");
                 Task.Run(() =>
                 {
                     var content = page.GetContent().Result;
-                    Dispatcher.Invoke(() => browser.NavigateToString(content));
+                    Dispatcher.Invoke(() => browser.LoadHtml(content));
                 });
-                e.Handled = true;
+                //e.Handled = true;
             }
         }
 
         private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            e.Handled = true;
+            //e.Handled = true;
         }
     }
 }

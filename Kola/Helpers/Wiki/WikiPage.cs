@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using Kola.Helpers;
 
 namespace Kola.Helpers.Wiki
 {
@@ -25,7 +27,19 @@ namespace Kola.Helpers.Wiki
             string content = await project.GetPageContent(ID);
             if(fullHTML)
             {
-                content = $"<html><head><style>{Properties.Resources.load}</style></head><body style=\"margin: 20px;\">{content}</body></html>";
+                string customStyle = Properties.Resources.Custom;
+                customStyle = customStyle.Replace("@bcg", (App.Current.Resources["BackgroundColorVariant"] as SolidColorBrush).Color.ToCSSString());
+                customStyle = customStyle.Replace("@fnt", (App.Current.Resources["FontColor"] as SolidColorBrush).Color.ToCSSString());
+                string fullstyle = $"<style>{customStyle}</style>";
+                content = $"<html><head>{fullstyle}</head><body>{content}" +
+                    @"
+<script>
+    document.body.addEventListener('mousedown', function(e){
+        window.external.notify('Notified!');
+}
+</script>
+"
+                    + "</body></html>";
             }
             return content;
         }

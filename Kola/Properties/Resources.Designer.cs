@@ -61,6 +61,23 @@ namespace Kola.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /*
+        ///    {0} - Background color,
+        ///    {1} - font color
+        ///*/
+        ///
+        ///body {
+        ///    color: {1};
+        ///    background-color: {0};
+        ///}.
+        /// </summary>
+        internal static string Custom {
+            get {
+                return ResourceManager.GetString("Custom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .mediaContainer,
         ///.PopUpMediaTransform {
         /// position:relative;
@@ -84,45 +101,6 @@ namespace Kola.Properties {
         ///#p-lang .uls-settings-trigger:focus {
         /// outline:1px solid #36c
         ///} [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string load {
-            get {
-                return ResourceManager.GetString("load", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to /*
-        ///
-        ///Common CSS for all skins
-        ///
-        ///See https://phabricator.wikimedia.org/M82 for standard colors
-        ///
-        ///*/
-        ///
-        ////* Larger conditions-area in AbuseFilter for some */
-        ///#wpFilterRules {
-        ///    min-height: 250px;
-        ///}
-        ///
-        ////* Larger notes-area in AbuseFilter for some */
-        ///#wpFilterNotes {
-        ///    min-height: 150px;
-        ///}
-        ///
-        ////* Style for &quot;notices&quot; */
-        ///.notice {
-        ///    text-align: justify;
-        ///    margin: 1em;
-        ///    padding: 0.2em;
-        ///}
-        ///
-        ///#disambig {
-        ///    border-top: 3px double #c8ccd1;
-        ///    border-bottom: 3px double #c8ccd1;
-        ///}
-        ///
-        ////* Add  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string WikiStyle {
             get {

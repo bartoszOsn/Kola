@@ -1,0 +1,13 @@
+﻿/*
+    @bcg - Background color,
+    @fnt - font color
+*/
+
+body {
+    background-color: @bcg;
+    color: @fnt;
+    font-family: sans-serif;
+    margin: 20px;
+    text-align: justify;
+    font-size: larger;
+}

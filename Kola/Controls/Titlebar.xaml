@@ -16,7 +16,7 @@
                 <Style TargetType="Button" BasedOn="{StaticResource TitlebarButton}" />
             </StackPanel.Resources>
             <Button Command="{x:Static kola:AppCommands.OpenDictionary}" x:Name="dictionaryButton">&#xf518;</Button>
-            <Popup x:Name="DictionaryPopup" AllowsTransparency="False" StaysOpen="False">
+            <Popup x:Name="DictionaryPopup" AllowsTransparency="False" StaysOpen="False" Style="{StaticResource PopupStyle}">
                 <local:WikiControl />
             </Popup>
             <Button x:Name="SettingsButton" Command="{x:Static kola:AppCommands.OpenSettings}">&#xf013;</Button>
