@@ -49,13 +49,12 @@
                                                     <Style.Triggers>
                                                         <Trigger Property="IsMouseOver" Value="True">
                                                             <Setter Property="Background" Value="Transparent" />
-                                                            <Setter Property="Foreground" Value="{StaticResource PrimaryColorVariant}" />
                                                         </Trigger>
                                                     </Style.Triggers>
                                                 </Style>
                                             </Button.Style>
                                         </Button>
-                                        <ContentPresenter x:Name="Content" Margin="10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextBlock.Foreground="{StaticResource PrimaryColor}" />
+                                        <ContentPresenter x:Name="Content" Margin="10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextBlock.Foreground="{StaticResource FontColor}" />
                                     </DockPanel>
                                 </Border>
                             </ControlTemplate>
