@@ -31,6 +31,7 @@ namespace Kola.Helpers.Wiki
                 { "action", "query" },
                 { "pageids", pageId },
                 { "prop", "extracts" },
+                { "exintro", "true" },
             };
         }
 

@@ -33,7 +33,7 @@
                     </Style>
                 </WebBrowser.Style>
             </WebBrowser>-->
-            <ListBox Grid.Row="1" ItemsSource="{Binding Pages}" Background="{StaticResource SecondaryColor}" x:Name="listBox" SelectionChanged="listBox_Selected">
+            <ListBox Grid.Row="1" ItemsSource="{Binding Pages}" Background="{StaticResource SecondaryColor}" x:Name="listBox" HorizontalContentAlignment="Stretch" SelectionChanged="listBox_Selected">
                 <ListBox.Style>
                     <Style TargetType="ListBox">
                         <Setter Property="Visibility" Value="Collapsed" />
