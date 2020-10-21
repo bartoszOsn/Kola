@@ -59,10 +59,10 @@
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="5" HorizontalAlignment="Stretch" ToolTip="{Binding Title}">
+                        <DockPanel Margin="5" HorizontalAlignment="Stretch" ToolTip="{Binding Title}">
+                            <TextBlock ToolTip="{Binding ProjectName}" Text="{Binding ProjectIcon}" FontFamily="{StaticResource FontAwesome}" FontSize="24" DockPanel.Dock="Right" />
                             <TextBlock Text="{Binding Title}" FontSize="24" TextTrimming="CharacterEllipsis" />
-                            <TextBlock Text="{Binding ProjectName}" FontSize="14" HorizontalAlignment="Right" />
-                        </StackPanel>
+                        </DockPanel>
 
                     </DataTemplate>
                 </ListBox.ItemTemplate>

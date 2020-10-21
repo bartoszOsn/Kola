@@ -11,7 +11,7 @@ namespace Kola.Helpers.Wiki
     class Wiktionary : WikiProject
     {
         public override string ProjectName => "Wiktionary";
-
+        public override string IconString => ((char)(0xf02d)).ToString();
         protected override string HostName => "wiktionary.org";
 
         protected override string GetContent(XmlDocument doc)

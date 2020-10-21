@@ -12,6 +12,7 @@ namespace Kola.Helpers.Wiki
     {
         protected override string HostName => "wikipedia.org";
         public override string ProjectName => "Wikipedia";
+        public override string IconString => ((char)(0xf0ac)).ToString();
 
         protected override StringDictionary GetSearchVariables(string query)
         {

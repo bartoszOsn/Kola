@@ -13,6 +13,7 @@ namespace Kola.Helpers.Wiki
         public string ID { get; private set; }
         public string Title { get; private set; }
         public string ProjectName => project.ProjectName;
+        public string ProjectIcon => project.IconString;
         private WikiProject project;
 
         public WikiPage(WikiProject project, string pageID, string pageTitle)

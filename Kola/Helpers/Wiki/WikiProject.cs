@@ -20,6 +20,12 @@ namespace Kola.Helpers.Wiki
         /// Name of the project, for example <c>Wikipedia</c> or <c>Wiktionary</c>.
         /// </summary>
         public abstract string ProjectName { get; }
+
+        /// <summary>
+        /// Icon of project, as string representing icon in FontAwesome
+        /// </summary>
+        public abstract string IconString { get; }
+
         /// <summary>
         /// Host name, included domain name, for example <c>wikipedia.org</c>
         /// </summary>
