@@ -31,15 +31,10 @@ namespace Kola.Helpers.Wiki
                 customStyle = customStyle.Replace("@bcg", (App.Current.Resources["BackgroundColorVariant"] as SolidColorBrush).Color.ToCSSString());
                 customStyle = customStyle.Replace("@fnt", (App.Current.Resources["FontColor"] as SolidColorBrush).Color.ToCSSString());
                 string fullstyle = $"<style>{customStyle}</style>";
-                content = $"<html><head>{fullstyle}</head><body>{content}" +
-                    @"
-<script>
-    document.body.addEventListener('mousedown', function(e){
-        window.external.notify('Notified!');
-}
-</script>
-"
-                    + "</body></html>";
+                content = HtmlHelper.GetHtml(content,
+                    (App.Current.Resources["BackgroundColorVariant"] as SolidColorBrush).Color,
+                    (App.Current.Resources["FontColor"] as SolidColorBrush).Color,
+                    (App.Current.Resources["PrimaryColorVariant"] as SolidColorBrush).Color);
             }
             return content;
         }

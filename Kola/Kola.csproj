@@ -101,6 +101,7 @@
       <DependentUpon>WikiControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ColorExcs.cs" />
+    <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Helpers\ToggleListEx.cs" />
     <Compile Include="Helpers\Wiki\Wiki.cs" />
     <Compile Include="Helpers\Wiki\WikiPage.cs" />
@@ -233,15 +234,15 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-  <Reference Update="CefSharp">
-    <Private>true</Private>
-  </Reference>
-  <Reference Update="CefSharp.Core">
-    <Private>true</Private>
-  </Reference>
-  <Reference Update="CefSharp.Wpf">
-    <Private>true</Private>
-  </Reference>
-</ItemGroup>
+    <Reference Update="CefSharp">
+      <Private>true</Private>
+    </Reference>
+    <Reference Update="CefSharp.Core">
+      <Private>true</Private>
+    </Reference>
+    <Reference Update="CefSharp.Wpf">
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
