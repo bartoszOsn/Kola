@@ -27,14 +27,7 @@ namespace Kola.Helpers.Wiki
             string content = await project.GetPageContent(ID);
             if(fullHTML)
             {
-                string customStyle = Properties.Resources.Custom;
-                customStyle = customStyle.Replace("@bcg", (App.Current.Resources["BackgroundColorVariant"] as SolidColorBrush).Color.ToCSSString());
-                customStyle = customStyle.Replace("@fnt", (App.Current.Resources["FontColor"] as SolidColorBrush).Color.ToCSSString());
-                string fullstyle = $"<style>{customStyle}</style>";
-                content = HtmlHelper.GetHtml(content,
-                    (App.Current.Resources["BackgroundColorVariant"] as SolidColorBrush).Color,
-                    (App.Current.Resources["FontColor"] as SolidColorBrush).Color,
-                    (App.Current.Resources["PrimaryColorVariant"] as SolidColorBrush).Color);
+                content = HtmlHelper.GetHtml(content);
             }
             return content;
         }

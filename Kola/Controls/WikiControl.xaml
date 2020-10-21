@@ -19,7 +19,7 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <TextBox x:Name="textBox" KeyDown="textBox_KeyDown"  />
-            <wpf:ChromiumWebBrowser x:Name="browser" Grid.Row="1" />
+            <wpf:ChromiumWebBrowser x:Name="browser" Grid.Row="1" Background="{StaticResource BackgroundColorVariant}" />
             <!--<Controls1:WebView x:Name="browser" Grid.Row="2"/>-->
             <!--<WebBrowser >
                 <WebBrowser.Style>

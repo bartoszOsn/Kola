@@ -9,12 +9,12 @@ namespace Kola.Helpers
 {
     static class HtmlHelper
     {
-        public static string GetHtml(string content = "", Color backgroundColor = default, Color fontColor = default, Color scrollbarColor = default)
+        public static string GetHtml(string content = "")
         {
             string customStyle = Properties.Resources.Custom;
-            customStyle = customStyle.Replace("@bcg", backgroundColor.ToCSSString());
-            customStyle = customStyle.Replace("@fnt", fontColor.ToCSSString());
-            customStyle = customStyle.Replace("@scroll-color", scrollbarColor.ToCSSString());
+            customStyle = customStyle.Replace("@bcg", (App.Current.Resources["BackgroundColorVariant"] as SolidColorBrush).Color.ToCSSString());
+            customStyle = customStyle.Replace("@fnt", (App.Current.Resources["FontColor"] as SolidColorBrush).Color.ToCSSString());
+            customStyle = customStyle.Replace("@scroll-color", (App.Current.Resources["PrimaryColorVariant"] as SolidColorBrush).Color.ToCSSString());
             string fullstyle = $"<style>{customStyle}</style>";
             return $"<html><head>{fullstyle}</head><body>{content}</body></html>";
         }

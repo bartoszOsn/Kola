@@ -1,4 +1,5 @@
 ﻿using CefSharp;
+using Kola.Helpers;
 using Kola.Helpers.Wiki;
 using System;
 using System.Collections.Generic;
@@ -52,7 +53,6 @@ namespace Kola.Controls
 
             timer.Stop();
             timer.Start();
-            //browser.LoadHtml("http://google.com");
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -79,7 +79,8 @@ namespace Kola.Controls
             WikiPage page = listBox.SelectedItem as WikiPage;
             if(page != null)
             {
-                browser.LoadHtml("<html><head></head><body></body></html>");
+                //Loads blank page to avoid white rectangle while loading
+                browser.LoadHtml(HtmlHelper.GetHtml());
                 Task.Run(() =>
                 {
                     var content = page.GetContent().Result;
