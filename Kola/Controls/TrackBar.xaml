@@ -34,11 +34,11 @@
             <ColumnDefinition Width="{Binding ElementName=Control, Path=ThumbWidth}" />
             <ColumnDefinition Width="{Binding ElementName=Control, Path=NormalisedValue, Converter={StaticResource floatToGridLengthConverter}, ConverterParameter={StaticResource true}}" />
         </Grid.ColumnDefinitions>
-        <Border Background="{StaticResource PrimaryColorVariant}" Grid.Column="0" Style="{StaticResource trackStyle}"/>
+        <Border Background="{StaticResource PrimaryColor}" Grid.Column="0" Style="{StaticResource trackStyle}"/>
 
         <Viewbox Grid.Column="1">
-            <Ellipse Fill="{StaticResource PrimaryColorVariant}" StrokeThickness="0" Width="20" Height="20" Margin="5" />
+            <Ellipse Fill="{StaticResource PrimaryColor}" StrokeThickness="0" Width="20" Height="20" Margin="5" />
         </Viewbox>
-        <Border Background="{StaticResource PrimaryColor}" Grid.Column="2" Style="{StaticResource trackStyle}" />
+        <Border Background="{StaticResource PrimaryColorVariant}" Grid.Column="2" Style="{StaticResource trackStyle}" />
     </Grid>
 </UserControl>
