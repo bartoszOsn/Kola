@@ -33,7 +33,15 @@
                     </Style>
                 </WebBrowser.Style>
             </WebBrowser>-->
-            <ListBox Grid.Row="1" ItemsSource="{Binding Pages}" Background="{StaticResource SecondaryColor}" x:Name="listBox" HorizontalContentAlignment="Stretch" SelectionChanged="listBox_Selected">
+            <ListBox
+                Grid.Row="1"
+                ItemsSource="{Binding Pages}"
+                Background="{StaticResource BackgroundColorVariant}"
+                Foreground="{StaticResource FontColor}" x:Name="listBox"
+                HorizontalContentAlignment="Stretch"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                BorderThickness="0"
+                SelectionChanged="listBox_Selected">
                 <ListBox.Style>
                     <Style TargetType="ListBox">
                         <Setter Property="Visibility" Value="Collapsed" />
@@ -46,13 +54,13 @@
                 </ListBox.Style>
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate >
-                        <StackPanel IsItemsHost="True" CanHorizontallyScroll="False" CanVerticallyScroll="True" />
+                        <StackPanel IsItemsHost="True" HorizontalAlignment="Stretch" />
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="5" HorizontalAlignment="Stretch">
-                            <TextBlock Text="{Binding Title}" FontSize="24" />
+                        <StackPanel Margin="5" HorizontalAlignment="Stretch" ToolTip="{Binding Title}">
+                            <TextBlock Text="{Binding Title}" FontSize="24" TextTrimming="CharacterEllipsis" />
                             <TextBlock Text="{Binding ProjectName}" FontSize="14" HorizontalAlignment="Right" />
                         </StackPanel>
 
