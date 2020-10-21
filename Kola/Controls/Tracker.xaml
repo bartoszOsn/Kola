@@ -8,6 +8,15 @@
              x:Name="Control"
              Background="Transparent"
              d:DesignHeight="50" d:DesignWidth="800">
+    <UserControl.Style>
+        <Style TargetType="UserControl">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Opacity" Value="0.5" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
     <Grid>
         <TextBlock FontSize="20" FontWeight="Bold" Foreground="{StaticResource PrimaryColor}" VerticalAlignment="Bottom" Margin="0, 0, 0, 2">
             <Run Text="{Binding ElementName=Control, Path=CurrentValue}" />
@@ -36,6 +45,8 @@
                                     </Storyboard>
                                 </BeginStoryboard>
                             </DataTrigger.ExitActions>
+                            <DataTrigger.Setters>
+                            </DataTrigger.Setters>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
