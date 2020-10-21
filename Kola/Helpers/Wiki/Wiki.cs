@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Kola.Helpers;
 
 namespace Kola.Helpers.Wiki
 {
@@ -21,6 +22,7 @@ namespace Kola.Helpers.Wiki
             {
                 result.AddRange(await project.Search(query));
             }
+            result.Sort((a, b) => a.Title.Distance(query) - b.Title.Distance(query));
             return result;
         }
     }
