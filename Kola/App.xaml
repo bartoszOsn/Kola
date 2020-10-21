@@ -70,6 +70,61 @@
                 <Setter Property="FontSize" Value="15" />
                 <Setter Property="Padding" Value="5" />
             </Style>
+            
+            <Style TargetType="ScrollBar">
+                <Setter Property="Width" Value="10" />
+                <Setter Property="Margin" Value="0,-1,-4,0" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ScrollBar">
+                            <Track
+                                Focusable="False"
+                                Name="PART_Track"
+                                IsDirectionReversed="True"
+                                Width="{TemplateBinding Width}">
+                                <Track.Resources>
+                                    <Style TargetType="RepeatButton">
+                                        <Setter Property="Background" Value="White" />
+                                        <Setter Property="Focusable" Value="False" />
+                                        <Setter Property="Opacity" Value="0.2" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="RepeatButton">
+                                                    <Border Background="{TemplateBinding Background}" Opacity="{TemplateBinding Opacity}" Padding="0" Margin="0" />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ScrollBar}, Path=IsMouseOver}" Value="True">
+                                                <Setter Property="Opacity" Value="0.4" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                    <Style TargetType="Thumb">
+                                        <Setter Property="Background" Value="{StaticResource PrimaryColorVariant}" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Thumb">
+                                                    <Border Background="{TemplateBinding Background}" />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Track.Resources>
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.LineDownCommand"  />
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.LineUpCommand" />
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb />
+                                </Track.Thumb>
+                            </Track>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
