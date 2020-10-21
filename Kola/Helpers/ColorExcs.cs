@@ -11,7 +11,7 @@ namespace Kola.Helpers
     {
         public static string ToCSSString(this Color color)
         {
-            return $"#{color.R:X2}{color.B:X2}{color.G:X2}";
+            return $"#{color.R:X2}{color.G:X2}{color.B:X2}";
         }
     }
 }

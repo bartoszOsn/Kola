@@ -1,13 +1,35 @@
 ﻿/*
+    variables: 
+    @primary-color
+    @background-color
+    @font-color
     @bcg - Background color,
     @fnt - font color
+    
 */
 
 body {
-    background-color: @bcg;
-    color: @fnt;
+    background-color: @background-color;
+    color: @font-color;
     font-family: sans-serif;
-    margin: 20px;
+    margin: 5px 20px 20px 20px;
     text-align: justify;
     font-size: larger;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-track:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: @primary-color;
 }

@@ -41,7 +41,6 @@ namespace Kola.Controls
             Pages = new ObservableCollection<WikiPage>();
             DataContext = this;
             InitializeComponent();
-            
         }
 
         

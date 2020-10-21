@@ -12,9 +12,9 @@ namespace Kola.Helpers
         public static string GetHtml(string content = "")
         {
             string customStyle = Properties.Resources.Custom;
-            customStyle = customStyle.Replace("@bcg", (App.Current.Resources["BackgroundColorVariant"] as SolidColorBrush).Color.ToCSSString());
-            customStyle = customStyle.Replace("@fnt", (App.Current.Resources["FontColor"] as SolidColorBrush).Color.ToCSSString());
-            customStyle = customStyle.Replace("@scroll-color", (App.Current.Resources["PrimaryColorVariant"] as SolidColorBrush).Color.ToCSSString());
+            customStyle = customStyle.Replace("@background-color", (App.Current.Resources["BackgroundColorVariant"] as SolidColorBrush).Color.ToCSSString());
+            customStyle = customStyle.Replace("@font-color", (App.Current.Resources["FontColor"] as SolidColorBrush).Color.ToCSSString());
+            customStyle = customStyle.Replace("@primary-color", (App.Current.Resources["PrimaryColorVariant"] as SolidColorBrush).Color.ToCSSString());
             string fullstyle = $"<style>{customStyle}</style>";
             return $"<html><head>{fullstyle}</head><body>{content}</body></html>";
         }
