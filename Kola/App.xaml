@@ -57,6 +57,20 @@
                 <Setter Property="Width" Value="400" />
                 <Setter Property="Height" Value="500" />
             </Style>
+
+            <Style TargetType="TextBox">
+                <Setter Property="BorderThickness" Value="0, 0, 0, 3" />
+                <Setter Property="BorderBrush" Value="{StaticResource PrimaryColorVariant}" />
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{Binding Source={StaticResource BackgroundColor}, Path=Color}" Opacity="0.3" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Foreground" Value="{StaticResource FontColor}" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="Margin" Value="0, 0, 0, 5" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
