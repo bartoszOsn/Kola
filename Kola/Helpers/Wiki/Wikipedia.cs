@@ -32,6 +32,7 @@ namespace Kola.Helpers.Wiki
                 { "pageids", pageId },
                 { "prop", "extracts" },
                 { "exintro", "true" },
+                { "redirects", "true" }
             };
         }
 

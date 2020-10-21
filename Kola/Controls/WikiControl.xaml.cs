@@ -44,7 +44,7 @@ namespace Kola.Controls
         }
 
         
-
+        //TODO: When using this event, deletion doesn't work. 
         private void textBox_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter)
