@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Kola.Styles">
+    <SolidColorBrush x:Key="PrimaryColor" Color="#37ABC8"/>
+    <SolidColorBrush x:Key="SecondaryColor" Color="#89043D"/>
+    <SolidColorBrush x:Key="BackgroundColor" Color="#070707"/>
+    <SolidColorBrush x:Key="PrimaryColorVariant" Color="#003052"/>
+    <SolidColorBrush x:Key="SecondaryColorVariant" Color="#3B021B"/>
+    <SolidColorBrush x:Key="BackgroundColorVariant" Color="#292929" />
+    <SolidColorBrush x:Key="FontColor" Color="#FAFCFE"/>
+</ResourceDictionary>

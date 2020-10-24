@@ -82,7 +82,7 @@ namespace Kola.Controls
                     {
                         Pages.Add(page);
                     }
-                    Console.WriteLine($"Count: {Pages.Count}");
+                    textBox.Focus();
                 });
             });
         }
