@@ -19,12 +19,12 @@ namespace Kola.Helpers.Wiki
             return doc.SelectSingleNode("/api/query/pages/page/extract").InnerText;
         }
 
-        protected override IEnumerable<WikiPage> GetPages(XmlDocument doc)
+        protected override IEnumerable<WikiPage> GetPages(XmlDocument doc, string lang)
         {
             return doc
                 .SelectNodes("/api/query/prefixsearch/ps")
                 .Cast<XmlNode>()
-                .Select(t => new WikiPage(this, t.Attributes["pageid"].Value, t.Attributes["title"].Value))
+                .Select(t => new WikiPage(this, t.Attributes["pageid"].Value, t.Attributes["title"].Value, lang))
                 .ToList();
         }
 

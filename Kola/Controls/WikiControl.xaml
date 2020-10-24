@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Kola.Controls"
+             xmlns:wiki="clr-namespace:Kola.Helpers.Wiki"
              xmlns:Controls1="clr-namespace:Microsoft.Toolkit.Wpf.UI.Controls;assembly=Microsoft.Toolkit.Wpf.UI.Controls.WebView"
              xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         xmlns:cef="clr-namespace:CefSharp;assembly=CefSharp.Core"
@@ -18,8 +19,14 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <TextBox x:Name="textBox" KeyDown="textBox_KeyDown" Margin="0, 0, 0, 20"  />
-            <wpf:ChromiumWebBrowser x:Name="browser" Grid.Row="1" Background="{StaticResource BackgroundColorVariant}" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80px" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <ComboBox ItemsSource="{x:Static wiki:Wiki.Langs}" SelectedValue="{Binding Lang}" />
+
+            <TextBox x:Name="textBox" KeyDown="textBox_KeyDown" Margin="0, 0, 0, 20" Grid.Column="1" Grid.Row="0"  />
+            <wpf:ChromiumWebBrowser x:Name="browser" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="{StaticResource BackgroundColorVariant}" />
             <!--<Controls1:WebView x:Name="browser" Grid.Row="2"/>-->
             <!--<WebBrowser >
                 <WebBrowser.Style>
@@ -34,7 +41,9 @@
                 </WebBrowser.Style>
             </WebBrowser>-->
             <ListBox
+                Grid.Column="0"
                 Grid.Row="1"
+                Grid.ColumnSpan="2"
                 ItemsSource="{Binding Pages}"
                 Background="{StaticResource BackgroundColorVariant}"
                 Foreground="{StaticResource FontColor}" x:Name="listBox"

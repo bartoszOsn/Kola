@@ -12,20 +12,22 @@ namespace Kola.Helpers.Wiki
     {
         public string ID { get; private set; }
         public string Title { get; private set; }
+        public string Lang { get; private set; }
         public string ProjectName => project.ProjectName;
         public string ProjectIcon => project.IconString;
         private WikiProject project;
 
-        public WikiPage(WikiProject project, string pageID, string pageTitle)
+        public WikiPage(WikiProject project, string pageID, string pageTitle, string lang)
         {
             this.project = project;
             this.ID = pageID;
             this.Title = pageTitle;
+            this.Lang = lang;
         }
 
         public async Task<string> GetContent(bool fullHTML = true)
         {
-            string content = await project.GetPageContent(ID);
+            string content = await project.GetPageContent(ID, Lang);
             if(fullHTML)
             {
                 content = HtmlHelper.GetHtml(content);

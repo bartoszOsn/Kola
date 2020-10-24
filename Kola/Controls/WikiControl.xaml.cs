@@ -4,6 +4,7 @@ using Kola.Helpers.Wiki;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -24,12 +25,25 @@ namespace Kola.Controls
     /// <summary>
     /// Interaction logic for WikiControl.xaml
     /// </summary>
-    public partial class WikiControl : UserControl
+    public partial class WikiControl : UserControl, INotifyPropertyChanged
     {
         readonly TimeSpan DelayTime;
         public ObservableCollection<WikiPage> Pages { get; set; }
+        public string Lang
+        {
+            get => lang;
+            set
+            {
+                lang = value;
+                Timer_Tick(this, EventArgs.Empty);
+                Changed(nameof(Lang));
+            }
+        }
 
         DispatcherTimer timer;
+        string lang = Wiki.Langs.First();
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public WikiControl()
         {
@@ -60,7 +74,7 @@ namespace Kola.Controls
             string text = textBox.Text;
             Task.Run(() =>
             {
-                var result = Wiki.Search(text).Result;
+                var result = Wiki.Search(text, Lang).Result;
                 Dispatcher.Invoke(() =>
                 {
                     Pages.Clear();
@@ -92,6 +106,11 @@ namespace Kola.Controls
         private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //e.Handled = true;
+        }
+
+        private void Changed(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

@@ -38,19 +38,21 @@ namespace Kola.Helpers.Wiki
         /// </summary>
         /// <param name="id">id of page</param>
         /// <returns>page content, more specifically children of the body of html document.</returns>
-        public async Task<string> GetPageContent(string id)
+        public async Task<string> GetPageContent(string id, string lang)
         {
-            XmlDocument doc = await GetDocument(GetVariablesToGetContent(id));
+            XmlDocument doc = await GetDocument(GetVariablesToGetContent(id), lang);
             return GetContent(doc);
         }
 
         /// <summary>
         /// Returns pages that match given query
         /// </summary>
-        public async Task<IEnumerable<WikiPage>> Search(string query)
+        /// <param name="query">String to be searched.</param>
+        /// <param name="lang">Language.</param>
+        public async Task<IEnumerable<WikiPage>> Search(string query, string lang)
         {
-            XmlDocument doc = await GetDocument(GetSearchVariables(query));
-            return GetPages(doc);
+            XmlDocument doc = await GetDocument(GetSearchVariables(query), lang);
+            return GetPages(doc, lang);
         }
 
         /// <summary>
@@ -72,15 +74,16 @@ namespace Kola.Helpers.Wiki
         /// returns pages returned by wikimedia API.
         /// </summary>
         /// <param name="doc">xml document returned by wikimedia API.</param>
+        /// <param name="lang">Language of document.</param>
         /// <returns>pages extracted from API response.</returns>
-        protected abstract IEnumerable<WikiPage> GetPages(XmlDocument doc);
+        protected abstract IEnumerable<WikiPage> GetPages(XmlDocument doc, string lang);
 
         /// <summary>
         /// Returns API url with given variables, and appends variable <c>format</c> with value <c>xml</c>
         /// </summary>
         /// <param name="variables">Variables</param>
         /// <param name="lang">language site to be used.</param>
-        private string GetUrl(StringDictionary variables, string lang = "en")
+        private string GetUrl(StringDictionary variables, string lang)
         {
             string url = String.Format("https://{0}.{1}/w/api.php", lang, HostName);
             if(variables.Count > 0)
@@ -98,12 +101,12 @@ namespace Kola.Helpers.Wiki
         /// <summary>
         /// Returns document received from API call with given variables.
         /// </summary>
-        private async Task<XmlDocument> GetDocument(StringDictionary variables)
+        private async Task<XmlDocument> GetDocument(StringDictionary variables, string lang)
         {
             string response;
             try
             {
-                string url = GetUrl(variables);
+                string url = GetUrl(variables, lang);
                 response = await httpClient.GetStringAsync(url);
             }
             catch (HttpRequestException e)
