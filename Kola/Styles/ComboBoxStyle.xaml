@@ -52,10 +52,51 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ComboBox">
                     <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <ThicknessAnimation
+                                            To="0, 0, 0, 0"
+                                            Duration="0:0:0.1"
+                                            Storyboard.TargetProperty="BorderThickness"
+                                            Storyboard.TargetName="toggle" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ThicknessAnimation
+                                            To="0, 0, 0, 3"
+                                            Duration="0:0:0.1"
+                                            Storyboard.TargetProperty="BorderThickness"
+                                            Storyboard.TargetName="toggle"
+                                            />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            To="{Binding Source={StaticResource PrimaryColor}, Path=Color}"
+                                            Duration="0:0:0.1"
+                                            Storyboard.TargetName="toggle"
+                                            Storyboard.TargetProperty="BorderBrush.Color" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused">
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            To="{Binding Source={StaticResource PrimaryColorVariant}, Path=Color}"
+                                            Duration="0:0:0.1"
+                                            Storyboard.TargetName="toggle"
+                                            Storyboard.TargetProperty="BorderBrush.Color" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                         <ToggleButton
                             x:Name="toggle"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
                             Background="{TemplateBinding Background}"
                             Foreground="{TemplateBinding Foreground}"
                             FontSize="{TemplateBinding FontSize}"
@@ -74,10 +115,17 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="BorderThickness" Value="1" />
-            </Trigger>
-        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="ComboBoxItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBoxItem">
+                    <Border>
+                        <ContentPresenter HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>
