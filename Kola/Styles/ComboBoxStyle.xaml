@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Kola.Styles">
+                    xmlns:local="clr-namespace:Kola.Styles"
+                    xmlns:ex="clr-namespace:Kola.MarkupExtensions"
+                    >
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
@@ -43,7 +45,12 @@
         <Setter Property="BorderBrush" Value="{StaticResource PrimaryColorVariant}" />
         <Setter Property="Background">
             <Setter.Value>
-                <SolidColorBrush Color="{Binding Source={StaticResource BackgroundColor}, Path=Color}" Opacity="0.3" />
+                <SolidColorBrush
+                    Color="{ex:BlendColor
+                        A={StaticResource BackgroundColor},
+                        B={StaticResource BackgroundColorVariant},
+                        Mix=0.3}"
+                    />
             </Setter.Value>
         </Setter>
         <Setter Property="Foreground" Value="{StaticResource FontColor}" />
@@ -57,7 +64,7 @@
                                 <VisualState x:Name="Normal">
                                     <Storyboard>
                                         <ThicknessAnimation
-                                            To="0, 0, 0, 0"
+                                            To="0, 0, 0, 3"
                                             Duration="0:0:0.1"
                                             Storyboard.TargetProperty="BorderThickness"
                                             Storyboard.TargetName="toggle" />
@@ -66,7 +73,7 @@
                                 <VisualState x:Name="MouseOver">
                                     <Storyboard>
                                         <ThicknessAnimation
-                                            To="0, 0, 0, 3"
+                                            To="0, 3, 0, 0"
                                             Duration="0:0:0.1"
                                             Storyboard.TargetProperty="BorderThickness"
                                             Storyboard.TargetName="toggle"
@@ -107,9 +114,13 @@
                             IsOpen="{TemplateBinding IsDropDownOpen}"
                             StaysOpen="False" Placement="Bottom"
                             Width="{Binding ElementName=toggle, Path=ActualWidth}"
+                            AllowsTransparency="True"
                             Focusable="False"
+                            VerticalOffset="5"
                             Name="PART_Popup">
-                            <StackPanel IsItemsHost="True" />
+                            <StackPanel
+                                Background="{TemplateBinding Background}"
+                                IsItemsHost="True" />
                         </Popup>
                     </Grid>
                 </ControlTemplate>
@@ -121,7 +132,24 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ComboBoxItem">
-                    <Border>
+                    <Border Padding="5" x:Name="Border">
+                        <Border.Background>
+                            <SolidColorBrush Color="{Binding Source={StaticResource PrimaryColorVariant}, Path=Color}" Opacity="0" />
+                        </Border.Background>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                            To="1"
+                                            Duration="0:0:0.1"
+                                            Storyboard.TargetProperty="Background.Opacity"
+                                            Storyboard.TargetName="Border" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                         <ContentPresenter HorizontalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
