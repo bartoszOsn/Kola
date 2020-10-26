@@ -40,7 +40,15 @@ namespace Kola.Helpers.Wiki
         /// <returns>page content, more specifically children of the body of html document.</returns>
         public async Task<string> GetPageContent(string id, string lang)
         {
-            XmlDocument doc = await GetDocument(GetVariablesToGetContent(id), lang);
+            XmlDocument doc;
+            try
+            {
+                doc = await GetDocument(GetVariablesToGetContent(id), lang);
+            }
+            catch(HttpRequestException)
+            {
+                return "<h2>Network error</h2><p>Check your internet connection and try again.</p>";
+            }
             return GetContent(doc);
         }
 
@@ -51,7 +59,15 @@ namespace Kola.Helpers.Wiki
         /// <param name="lang">Language.</param>
         public async Task<IEnumerable<WikiPage>> Search(string query, string lang)
         {
-            XmlDocument doc = await GetDocument(GetSearchVariables(query), lang);
+            XmlDocument doc;
+            try
+            {
+                doc = await GetDocument(GetSearchVariables(query), lang);
+            }
+            catch(HttpRequestException)
+            {
+                return new WikiPage[0];
+            }
             return GetPages(doc, lang);
         }
 
@@ -104,6 +120,7 @@ namespace Kola.Helpers.Wiki
         private async Task<XmlDocument> GetDocument(StringDictionary variables, string lang)
         {
             string response;
+            XmlDocument doc = new XmlDocument();
             try
             {
                 string url = GetUrl(variables, lang);
@@ -111,9 +128,9 @@ namespace Kola.Helpers.Wiki
             }
             catch (HttpRequestException e)
             {
-                throw e; //TODO
+                throw e;
             }
-            XmlDocument doc = new XmlDocument();
+            
             doc.LoadXml(response);
             return doc;
         }

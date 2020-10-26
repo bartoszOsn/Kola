@@ -8,7 +8,6 @@ using System.Windows;
 
 namespace Kola
 {
-    //TODO: implement popup to search wiktionary and wikipedia
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
