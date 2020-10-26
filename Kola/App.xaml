@@ -7,48 +7,12 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/Colors.xaml" />
+                <ResourceDictionary Source="Styles/Fonts.xaml" />
                 <ResourceDictionary Source="Styles/ComboBoxStyle.xaml" />
+                <ResourceDictionary Source="Styles/TitlebarButton.xaml" />
+                <ResourceDictionary Source="Styles/TitlebarToggleButton.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
-
-            
-
-            <FontFamily x:Key="FontAwesome">/fonts/fa-solid-900.ttf#Font Awesome 5 Free Solid</FontFamily>
-
-            <Style x:Key="TitlebarButton" TargetType="Button">
-                <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-                <Setter Property="FontFamily" Value="{StaticResource FontAwesome}" />
-                <Setter Property="VerticalAlignment" Value="Stretch" />
-                <Setter Property="Foreground" Value="{StaticResource FontColor}" />
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}">
-                                <Viewbox Margin="10, 7">
-                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
-                                </Viewbox>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" >
-                            <Setter.Value>
-                                <SolidColorBrush Color="{Binding Source={StaticResource PrimaryColor}, Path=Color}" Opacity="0.05" />
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Property="Foreground" Value="{StaticResource PrimaryColor}" />
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-
-            <Style TargetType="Popup" x:Key="PopupStyle">
-                <Setter Property="Placement" Value="Bottom" />
-                <Setter Property="PlacementTarget" Value="{Binding Source={x:Static local:App.Current}, Path=Window}" />
-                <Setter Property="Width" Value="400" />
-                <Setter Property="Height" Value="500" />
-            </Style>
 
             <Style TargetType="TextBox">
                 <Setter Property="BorderThickness" Value="0, 0, 0, 3" />

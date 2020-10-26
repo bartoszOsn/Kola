@@ -15,14 +15,22 @@
             <StackPanel.Resources>
                 <Style TargetType="Button" BasedOn="{StaticResource TitlebarButton}" />
             </StackPanel.Resources>
-            <Button Command="{x:Static kola:AppCommands.OpenDictionary}" x:Name="dictionaryButton">&#xf518;</Button>
-            <Popup x:Name="DictionaryPopup" AllowsTransparency="False" StaysOpen="False" Style="{StaticResource PopupStyle}">
-                <local:WikiControl />
-            </Popup>
-            <Button x:Name="SettingsButton" Command="{x:Static kola:AppCommands.OpenSettings}">&#xf013;</Button>
-            <Popup x:Name="SettingsPopup" AllowsTransparency="False" StaysOpen="False" Style="{StaticResource PopupStyle}">
-                <local:SettingsControlxaml />
-            </Popup>
+            <local:PopupToolbar x:Name="popupToolbar">
+                <local:PopupToolbar.Popups>
+                    <local:PopupContentCollection>
+                        <local:PopupContentControl ButtonIcon="&#xf31e;" TooltipText="Zoom">
+                            
+                        </local:PopupContentControl>
+                        <local:PopupContentControl ButtonIcon="&#xf518;" TooltipText="Wiki">
+                            <local:WikiControl />
+                        </local:PopupContentControl>
+                        <local:PopupContentControl ButtonIcon="&#xf013;" TooltipText="Settings">
+                            <local:SettingsControlxaml />
+                        </local:PopupContentControl>
+                    </local:PopupContentCollection>
+                </local:PopupToolbar.Popups>
+            </local:PopupToolbar>
+            <Rectangle Fill="{StaticResource FontColor}" Width="3" Margin="3, 5" VerticalAlignment="Stretch" Opacity="0.3" />
             <Button Command="{x:Static kola:AppCommands.MinizeWindow}">&#xf2d1;</Button>
             <ContentPresenter Content="">
                 <ContentPresenter.Resources>

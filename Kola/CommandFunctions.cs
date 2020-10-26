@@ -79,7 +79,7 @@ namespace Kola
 
         public void OpenSettings(object sender, ExecutedRoutedEventArgs e)
         {
-            Window.tabs.SettingsPopup.IsOpen = true;
+            Window.tabs.popupToolbar.SetChecked(2);
         }
 
         public void CanOpenSettings(object senter, CanExecuteRoutedEventArgs e)
@@ -89,7 +89,7 @@ namespace Kola
 
         public void OpenDictionary(object sender, ExecutedRoutedEventArgs e)
         {
-            Window.tabs.DictionaryPopup.IsOpen = true;
+            Window.tabs.popupToolbar.SetChecked(1);
         }
 
         public void CanOpenDictionary(object senter, CanExecuteRoutedEventArgs e)
