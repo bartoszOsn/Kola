@@ -43,7 +43,7 @@ namespace Kola.Converters
         /// <param name="culture">Not used</param>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if(values.Length < 3)
+            if(values.Length < 3 || !(values[0] is double && values[1] is Image && values[2] is ZoomProperty))
             {
                 return null;
             }
@@ -80,7 +80,7 @@ namespace Kola.Converters
             {
                 return 0;
             }
-            return (width - viewportWidth) * offsetX;
+            return -((width - viewportWidth) * offsetX);
         }
 
         /// <summary>
@@ -88,13 +88,13 @@ namespace Kola.Converters
         /// </summary>
         private double GetOffsetY(double offsetY, Image image)
         {
-            double width = GetRealWidth(image);
-            double viewportWidth = image.ActualWidth;
-            if (width <= viewportWidth)
+            double height = GetRealHeight(image);
+            double viewportHeight = image.ActualHeight;
+            if (height <= viewportHeight)
             {
                 return 0;
             }
-            return (width - viewportWidth) * offsetY;
+            return -((height - viewportHeight) * offsetY);
         }
 
         /// <summary>

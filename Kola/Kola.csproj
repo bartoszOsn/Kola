@@ -103,6 +103,10 @@
     <Compile Include="Controls\WikiControl.xaml.cs">
       <DependentUpon>WikiControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Zoom.xaml.cs">
+      <DependentUpon>Zoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\ZoomRelativeToAbsoluteConverter.cs" />
     <Compile Include="Helpers\ColorExcs.cs" />
     <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Helpers\StringEx.cs" />
@@ -115,6 +119,7 @@
     <Compile Include="InstanceManager.cs" />
     <Compile Include="MarkupExtensions\BlendColorExtension.cs" />
     <Compile Include="MarkupExtensions\SettingsBindingMarkupExtension.cs" />
+    <Compile Include="Model\Zoom.cs" />
     <Compile Include="Settings.cs" />
     <Page Include="Controls\Magnifier.xaml">
       <SubType>Designer</SubType>
@@ -145,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\WikiControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Zoom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

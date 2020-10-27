@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Kola.Model
 {
-    class Zoom : INotifyPropertyChanged
+    //TODO: Fix magnifier so that it knows about zoom.
+    public class Zoom : INotifyPropertyChanged
     {
         /// <summary>
         /// Level of zoom, value <c>1</c> means no zoom at all.
@@ -20,6 +21,8 @@ namespace Kola.Model
             {
                 zoomLevel = value;
                 Changed(nameof(ZoomLevel));
+                Changed(nameof(OffsetX));
+                Changed(nameof(OffsetY));
             }
         }
         /// <summary>

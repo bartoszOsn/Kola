@@ -19,7 +19,7 @@
                 <local:PopupToolbar.Popups>
                     <local:PopupContentCollection>
                         <local:PopupContentControl ButtonIcon="&#xf31e;" TooltipText="Zoom">
-                            
+                            <local:Zoom />
                         </local:PopupContentControl>
                         <local:PopupContentControl ButtonIcon="&#xf518;" TooltipText="Wiki">
                             <local:WikiControl />

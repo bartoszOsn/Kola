@@ -37,9 +37,7 @@ namespace Kola.Model
         /// Number of pages in comic.
         /// </summary>
         public abstract int PageCount { get; }
-        /// <summary>
-        /// ImageSource of current page.
-        /// </summary>
+
         
         public bool IsSelected
         {
@@ -50,6 +48,12 @@ namespace Kola.Model
                 Changed(nameof(IsSelected));
             }
         }
+
+        public Zoom Zoom { get; private set; } = new Zoom();
+
+        /// <summary>
+        /// ImageSource of current page.
+        /// </summary>
         public abstract ImageSource PageImage { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;

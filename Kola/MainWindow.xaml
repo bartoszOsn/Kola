@@ -6,12 +6,16 @@
         xmlns:local="clr-namespace:Kola"
         xmlns:model="clr-namespace:Kola.Model"
         xmlns:controls="clr-namespace:Kola.Controls"
+        xmlns:conv="clr-namespace:Kola.Converters"
         xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
         xmlns:windows="clr-namespace:System.Windows;assembly=PresentationFramework"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Background="{DynamicResource BackgroundColor}">
     <Window.Resources>
         <model:ComicBookArrayToStringArrayConverter x:Key="ComicBookArrToStrConv" />
+        <conv:ZoomRelativeToAbsoluteConverter x:Key="ZoomConverter" />
+        <conv:ZoomProperty x:Key="offsetXZoomProperty">OffsetX</conv:ZoomProperty>
+        <conv:ZoomProperty x:Key="offsetYZoomProperty">OffsetY</conv:ZoomProperty>
         <local:IntToPlus1Converter x:Key="plus1Converter" />
         <shell:WindowChrome x:Key="chrome" GlassFrameThickness="0" CaptionHeight="35" CornerRadius="0" NonClientFrameEdges="None" />
     </Window.Resources>
@@ -55,8 +59,29 @@
             Grid.Column="0" Grid.ColumnSpan="3"
             Grid.Row="1" Grid.RowSpan="2"
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
-            Source="{Binding SelectedTab.PageImage}"
-            />
+            Source="{Binding SelectedTab.PageImage}">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="{Binding Path=SelectedTab.Zoom.ZoomLevel}" ScaleY="{Binding Path=SelectedTab.Zoom.ZoomLevel}" />
+                    <TranslateTransform>
+                        <TranslateTransform.X>
+                            <MultiBinding Converter="{StaticResource ZoomConverter}">
+                                <Binding Path="SelectedTab.Zoom.OffsetX" />
+                                <Binding ElementName="Image" />
+                                <Binding Source="{StaticResource offsetXZoomProperty}" />
+                            </MultiBinding>
+                        </TranslateTransform.X>
+                        <TranslateTransform.Y>
+                            <MultiBinding Converter="{StaticResource ZoomConverter}">
+                                <Binding Path="SelectedTab.Zoom.OffsetY" />
+                                <Binding ElementName="Image" />
+                                <Binding Source="{StaticResource offsetYZoomProperty}" />
+                            </MultiBinding>
+                        </TranslateTransform.Y>
+                    </TranslateTransform>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
         <Canvas
             Grid.Column="0" Grid.ColumnSpan="3"
             Grid.Row="1" Grid.RowSpan="2"
