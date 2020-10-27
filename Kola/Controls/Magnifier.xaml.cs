@@ -147,13 +147,17 @@ namespace Kola.Controls
         
         private void PositionImage(double radius)
         {
-            InternalImage.Width = factor * Image.ActualWidth;
-            InternalImage.Height = factor * Image.ActualHeight;
+            Vector imageSize = GetRealImageSize();
+            Vector scale = GetImageScale();
+            InternalImage.Width = factor * imageSize.X;
+            InternalImage.Height = factor * imageSize.Y;
 
-            Point CenterInImage = Canvas.TranslatePoint(lectClickCenter, Image);
+            Point relativeLeftClickCenter = lectClickCenter;
 
-            Canvas.SetLeft(InternalImage, radius - CenterInImage.X * factor);
-            Canvas.SetTop(InternalImage, radius - CenterInImage.Y * factor);
+            Point CenterInImage = Canvas.TranslatePoint(relativeLeftClickCenter, Image);
+
+            Canvas.SetLeft(InternalImage, radius - CenterInImage.X * factor * scale.X);
+            Canvas.SetTop(InternalImage, radius - CenterInImage.Y * factor * scale.Y);
         }
         private void ResetRadius()
         {
@@ -192,6 +196,21 @@ namespace Kola.Controls
             ClipCircle.RadiusX = 0;
             ClipCircle.RadiusY = 0;
             factor = 2;
+        }
+
+        private Vector GetRealImageSize()
+        {
+            Vector v = GetImageScale();
+            v.X = Image.ActualWidth * v.X;
+            v.Y = Image.ActualHeight * v.Y;
+            return v;
+        }
+
+        private Vector GetImageScale()
+        {
+            TransformGroup group = Image.RenderTransform as TransformGroup;
+            ScaleTransform scaleTransform = group.Children.First(t => t is ScaleTransform) as ScaleTransform;
+            return new Vector(scaleTransform.ScaleX, scaleTransform.ScaleY);
         }
     }
 }

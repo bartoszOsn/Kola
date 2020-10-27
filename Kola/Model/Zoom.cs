@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Kola.Model
 {
-    //TODO: Fix magnifier so that it knows about zoom.
     public class Zoom : INotifyPropertyChanged
     {
         /// <summary>
