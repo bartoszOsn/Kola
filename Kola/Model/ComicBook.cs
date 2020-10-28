@@ -28,7 +28,7 @@ namespace Kola.Model
         /// <summary>
         /// Name of file, including extension.
         /// </summary>
-        public string Name { get => System.IO.Path.GetFileName(Path); }
+        public virtual string Name { get => System.IO.Path.GetFileName(Path); }
         /// <summary>
         /// Number of the page that comic is opened at.
         /// </summary>

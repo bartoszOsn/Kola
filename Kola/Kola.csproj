@@ -124,6 +124,7 @@
     <Compile Include="InstanceManager.cs" />
     <Compile Include="MarkupExtensions\BlendColorExtension.cs" />
     <Compile Include="MarkupExtensions\SettingsBindingMarkupExtension.cs" />
+    <Compile Include="Model\ImageBook.cs" />
     <Compile Include="Model\Zoom.cs" />
     <Compile Include="Settings.cs" />
     <Page Include="Controls\Magnifier.xaml">

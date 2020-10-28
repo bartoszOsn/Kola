@@ -57,7 +57,8 @@ namespace Kola
             creators = new FormatInfo[]
             {
                 new FormatInfo(new string[]{".cbr", ".cbz"}, "Comic book archives", CreateArchiveBook),
-                new FormatInfo(new string[]{".rar", ".zip"}, "Archives", CreateArchiveBook)
+                new FormatInfo(new string[]{".rar", ".zip"}, "Archives", CreateArchiveBook),
+                new FormatInfo(ImageBook.supportedImageExtensions, "Images", CreateImageComicBook)
             };
         }
 
@@ -74,6 +75,11 @@ namespace Kola
         private static ComicBook CreateArchiveBook(string path)
         {
             return new ArchiveBook(path);
+        }
+
+        private static ComicBook CreateImageComicBook(string path)
+        {
+            return new ImageBook(path);
         }
     }
 }
