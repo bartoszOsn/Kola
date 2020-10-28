@@ -82,7 +82,6 @@ namespace Kola
             Model = model;
             Commands = new CommandFunctions(this);
             InitializeComponent();
-            InitKeyboardGestures();
             WindowState = WindowState.Maximized;
             zoomDispatcher = new DispatcherTimer();
             zoomDispatcher.Interval = TimeSpan.FromMilliseconds(5);
@@ -118,15 +117,18 @@ namespace Kola
             Model.SelectedTab?.PreviousPage();
         }
 
-        private void InitKeyboardGestures()
-        {
-            InputBindings.Add(new InputBinding(AppCommands.NextPage , new KeyGesture(Key.Right)));
-            InputBindings.Add(new InputBinding(AppCommands.PreviousPage , new KeyGesture(Key.Left)));
-        }
-
         protected override void OnKeyDown(KeyEventArgs e)
         {
             KeyboardStateChanged(e);
+
+            if(e.Key == Properties.Settings.Default.NextPageKey1 || e.Key == Properties.Settings.Default.NextPageKey2)
+            {
+                AppCommands.NextPage.Execute(null, this);
+            }
+            if (e.Key == Properties.Settings.Default.PreviousPageKey1 || e.Key == Properties.Settings.Default.PreviousPageKey2)
+            {
+                AppCommands.PreviousPage.Execute(null, this);
+            }
         }
 
         protected override void OnKeyUp(KeyEventArgs e)

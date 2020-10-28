@@ -10,16 +10,20 @@
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /&gt;</Value>
     </Setting>
     <Setting Name="NextPageKey1" Type="System.Windows.Input.Key" Scope="User">
-      <Value Profile="(Default)">Right</Value>
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;Key&gt;Right&lt;/Key&gt;</Value>
     </Setting>
     <Setting Name="NextPageKey2" Type="System.Windows.Input.Key" Scope="User">
-      <Value Profile="(Default)">E</Value>
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;Key&gt;E&lt;/Key&gt;</Value>
     </Setting>
     <Setting Name="PreviousPageKey1" Type="System.Windows.Input.Key" Scope="User">
-      <Value Profile="(Default)">Left</Value>
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;Key&gt;Left&lt;/Key&gt;</Value>
     </Setting>
     <Setting Name="PreviousPageKey2" Type="System.Windows.Input.Key" Scope="User">
-      <Value Profile="(Default)">Q</Value>
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;Key&gt;Q&lt;/Key&gt;</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -50,7 +50,7 @@ namespace Kola.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Right")]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<Key>Right</Key>")]
         public global::System.Windows.Input.Key NextPageKey1 {
             get {
                 return ((global::System.Windows.Input.Key)(this["NextPageKey1"]));
@@ -62,7 +62,7 @@ namespace Kola.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("E")]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<Key>E</Key>")]
         public global::System.Windows.Input.Key NextPageKey2 {
             get {
                 return ((global::System.Windows.Input.Key)(this["NextPageKey2"]));
@@ -74,7 +74,7 @@ namespace Kola.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Left")]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<Key>Left</Key>")]
         public global::System.Windows.Input.Key PreviousPageKey1 {
             get {
                 return ((global::System.Windows.Input.Key)(this["PreviousPageKey1"]));
@@ -86,7 +86,7 @@ namespace Kola.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Q")]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<Key>Q</Key>")]
         public global::System.Windows.Input.Key PreviousPageKey2 {
             get {
                 return ((global::System.Windows.Input.Key)(this["PreviousPageKey2"]));

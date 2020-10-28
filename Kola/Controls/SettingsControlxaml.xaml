@@ -8,25 +8,31 @@
              xmlns:me="clr-namespace:Kola.MarkupExtensions"
              Background="Transparent"
              mc:Ignorable="d"
-             
              d:DesignHeight="500" d:DesignWidth="450">
-    <StackPanel Margin="20" TextBlock.Foreground="{StaticResource FontColor}">
-        <TextBlock FontWeight="Bold" FontSize="48">Settings</TextBlock>
-        <TextBlock FontWeight="Bold" FontSize="36">General Settings</TextBlock>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Margin="0,0,10,0" MaxWidth="200" TextWrapping="Wrap">How many pages should be loaded into memory at once?</TextBlock>
-            <TextBox Text="{me:SettingsBindingMarkup PagesInMemoryCount}" MinWidth="50" UseLayoutRounding="False" VerticalAlignment="Center" />
-        </StackPanel>
-        <TextBlock FontWeight="Bold" FontSize="36">Extensions association</TextBlock>
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource textblockStyle}" />
+    </UserControl.Resources>
+    <StackPanel Margin="50, 20, 50, 50">
+        <TextBlock FontWeight="SemiBold" FontSize="36" Margin="0, 0, 0, 10">Settings</TextBlock>
+        <TextBlock FontWeight="SemiBold" FontSize="24" Margin="0, 0, 0, 10">General Settings</TextBlock>
+        <TextBlock Margin="0,0,0,5" TextWrapping="Wrap">How many pages should be loaded into memory at once?</TextBlock>
+        <TextBox Text="{me:SettingsBindingMarkup Path=PagesInMemoryCount}" VerticalAlignment="Center" Margin="0, 0, 0, 10" />
+        <TextBlock FontWeight="SemiBold" FontSize="24" Margin="0, 0, 0, 10">Extensions association</TextBlock>
         <ItemsControl ItemsSource="{x:Static kola:ComicBookFactory.Creators}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="2" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type kola:FormatInfo}">
                     <StackPanel>
-                        <TextBlock Text="{Binding Description}" />
+                        <TextBlock Text="{Binding Description}" VerticalAlignment="Center" Style="{StaticResource textblockStyle}" />
                         <ItemsControl ItemsSource="{Binding Formats}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="string">
                                     <CheckBox
+                                        VerticalAlignment="Bottom"
                                         Content="{Binding }"
                                         kola:ToggleListEx.List="{me:SettingsBindingMarkup AsociatedExtensions}"
                                         kola:ToggleListEx.Element="{Binding }"
@@ -35,7 +41,7 @@
                             </ItemsControl.ItemTemplate>
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal" />
+                                    <StackPanel Orientation="Vertical" />
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>

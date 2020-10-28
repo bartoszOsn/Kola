@@ -51,7 +51,6 @@ namespace Kola.Controls
             timer = new DispatcherTimer();
             timer.Tick += Timer_Tick;
             timer.Interval = DelayTime;
-            
             Pages = new ObservableCollection<WikiPage>();
             DataContext = this;
             InitializeComponent();
