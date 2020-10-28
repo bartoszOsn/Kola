@@ -81,11 +81,20 @@ namespace Kola.Controls
 
         private void AlignOffset(Point mousePos)
         {
+            var a1 = (root.ActualWidth - image.ActualWidth) / 2;
+            var a2 = (root.ActualHeight - image.ActualHeight) / 2;
+
+            var b1 = image.ActualWidth + (root.ActualWidth - image.ActualWidth) / Zoom;
+            var b2 = image.ActualHeight + (root.ActualHeight - image.ActualHeight) / Zoom;
+            mousePos.X -= a1 - a1 / Zoom;
+            mousePos.Y -= a2 - a2 / Zoom;
+
+
             double innerWidth = root.ActualWidth / Zoom;
             double innerHeight = root.ActualHeight / Zoom;
 
-            double x = (mousePos.X - innerWidth / 2.0) / (root.ActualWidth - innerWidth);
-            double y = (mousePos.Y - innerHeight / 2.0) / (root.ActualHeight - innerHeight);
+            double x = (mousePos.X - innerWidth / 2.0) / (b1 - innerWidth);
+            double y = (mousePos.Y - innerHeight / 2.0) / (b2 - innerHeight);
 
             x = Clamp(x, 0, 1);
             y = Clamp(y, 0, 1);
