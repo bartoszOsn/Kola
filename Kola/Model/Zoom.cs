@@ -51,9 +51,9 @@ namespace Kola.Model
             }
         }
 
-        private double zoomLevel = 1;
-        private double offsetX = 0;
-        private double offsetY = 0;
+        private double zoomLevel = 1.0;
+        private double offsetX = 0.5;
+        private double offsetY = 0.0;
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void Changed(string name)
