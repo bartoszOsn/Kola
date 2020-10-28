@@ -47,5 +47,53 @@ namespace Kola.Properties {
                 this["AsociatedExtensions"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Right")]
+        public global::System.Windows.Input.Key NextPageKey1 {
+            get {
+                return ((global::System.Windows.Input.Key)(this["NextPageKey1"]));
+            }
+            set {
+                this["NextPageKey1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("E")]
+        public global::System.Windows.Input.Key NextPageKey2 {
+            get {
+                return ((global::System.Windows.Input.Key)(this["NextPageKey2"]));
+            }
+            set {
+                this["NextPageKey2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Left")]
+        public global::System.Windows.Input.Key PreviousPageKey1 {
+            get {
+                return ((global::System.Windows.Input.Key)(this["PreviousPageKey1"]));
+            }
+            set {
+                this["PreviousPageKey1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Q")]
+        public global::System.Windows.Input.Key PreviousPageKey2 {
+            get {
+                return ((global::System.Windows.Input.Key)(this["PreviousPageKey2"]));
+            }
+            set {
+                this["PreviousPageKey2"] = value;
+            }
+        }
     }
 }
