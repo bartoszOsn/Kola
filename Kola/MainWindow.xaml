@@ -10,6 +10,8 @@
         xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
         xmlns:windows="clr-namespace:System.Windows;assembly=PresentationFramework"
         mc:Ignorable="d"
+        local:MainWindow.ViewportWidth="{Binding ElementName=ImageContainer, Path=ActualWidth}"
+        local:MainWindow.ViewportHeight="{Binding ElementName=ImageContainer, Path=ActualHeight}"
         Title="MainWindow" Height="450" Width="800" Background="{DynamicResource BackgroundColor}">
     <Window.Resources>
         <model:ComicBookArrayToStringArrayConverter x:Key="ComicBookArrToStrConv" />
@@ -58,6 +60,7 @@
             Grid.Column="0" Grid.ColumnSpan="3"
             Grid.Row="1" Grid.RowSpan="2"
             ClipToBounds="True"
+            x:Name="ImageContainer"
             ScrollViewer.VerticalScrollBarVisibility="Disabled">
             <Image
             x:Name="Image"

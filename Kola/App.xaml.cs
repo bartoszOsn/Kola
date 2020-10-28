@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Linq;
@@ -11,10 +12,22 @@ namespace Kola
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : Application, INotifyPropertyChanged
     {
         public InstanceManager InstanceManager { get; set; }
-        public MainWindow Window { get; private set; }
+        public MainWindow Window
+        {
+            get => window;
+            set
+            {
+                window = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Window)));
+            }
+        }
+        private MainWindow window;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             //TEST

@@ -4,51 +4,80 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Kola.Controls"
+             xmlns:kola="clr-namespace:Kola"
              xmlns:math="http://hexinnovation.com/math"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
              mc:Ignorable="d"
              x:Name="userControl"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <math:MathConverter x:Key="math" />
     </UserControl.Resources>
-    <Canvas x:Name="root">
-        <Canvas.Background>
-            <SolidColorBrush Color="{Binding Source={StaticResource BackgroundColor}, Path=Color}" Opacity="0.7" />
-        </Canvas.Background>
-        <Rectangle
+    <Grid>
+        <Canvas x:Name="root">
+            <Canvas.Width>
+                <MultiBinding Converter="{StaticResource math}" ConverterParameter="min([2], [3] * x / y)">
+                    <Binding Source="{x:Static Application.Current}" Path="Window.ViewportWidth" />
+                    <Binding Source="{x:Static Application.Current}" Path="Window.ViewportHeight" />
+                    <Binding RelativeSource="{RelativeSource self}" Path="Parent.ActualWidth" />
+                    <Binding RelativeSource="{RelativeSource self}" Path="Parent.ActualHeight" />
+                </MultiBinding>
+            </Canvas.Width>
+            <Canvas.Height>
+                <MultiBinding Converter="{StaticResource math}" ConverterParameter="min([3], [2] * y / x)">
+                    <Binding Source="{x:Static Application.Current}" Path="Window.(kola:MainWindow.ViewportWidth)"/>
+                    <Binding Source="{x:Static Application.Current}" Path="Window.(kola:MainWindow.ViewportHeight)"/>
+                    <Binding RelativeSource="{RelativeSource self}" Path="Parent.ActualWidth" />
+                    <Binding RelativeSource="{RelativeSource self}" Path="Parent.ActualHeight" />
+                </MultiBinding>
+            </Canvas.Height>
+            <Canvas.Background>
+                <SolidColorBrush Color="{Binding Source={StaticResource BackgroundColor}, Path=Color}" Opacity="0.7" />
+            </Canvas.Background>
+            <Rectangle
             Stroke="{StaticResource PrimaryColorVariant}"
             StrokeThickness="2"
             Canvas.Top="0" Canvas.Left="0"
             Width="{Binding ElementName=root, Path=ActualWidth}"
             Height="{Binding ElementName=root, Path=ActualHeight}" />
-        <Rectangle Stroke="{StaticResource PrimaryColor}" StrokeThickness="2">
-            <Rectangle.Width>
-                <MultiBinding Converter="{StaticResource math}" ConverterParameter="x/y">
-                    <Binding ElementName="root" Path="ActualWidth" />
-                    <Binding ElementName="userControl" Path="Zoom" />
-                </MultiBinding>
-            </Rectangle.Width>
-            <Rectangle.Height>
-                <MultiBinding Converter="{StaticResource math}" ConverterParameter="x/y">
-                    <Binding ElementName="root" Path="ActualHeight" />
-                    <Binding ElementName="userControl" Path="Zoom" />
-                </MultiBinding>
-            </Rectangle.Height>
-            <Canvas.Left>
-                <MultiBinding Converter="{StaticResource math}" ConverterParameter="(x - x/y) * z">
-                    <Binding ElementName="root" Path="ActualWidth" />
-                    <Binding ElementName="userControl" Path="Zoom" />
-                    <Binding ElementName="userControl" Path="OffsetX" />
-                </MultiBinding>
-            </Canvas.Left>
-            <Canvas.Top>
-                <MultiBinding Converter="{StaticResource math}" ConverterParameter="(x - x/y) * z">
-                    <Binding ElementName="root" Path="ActualHeight" />
-                    <Binding ElementName="userControl" Path="Zoom" />
-                    <Binding ElementName="userControl" Path="OffsetY" />
-                </MultiBinding>
-            </Canvas.Top>
-        </Rectangle>
-    </Canvas>
+            <Image
+                x:Name="image"
+                Source="{Binding SelectedTab.PageImage}"
+                Width="{Binding ElementName=root, Path=ActualWidth}"
+                Height="{Binding ElementName=root, Path=ActualHeight}" />
+
+
+            <Rectangle Stroke="{StaticResource PrimaryColor}" StrokeThickness="2">
+                <Rectangle.Width>
+                    <MultiBinding Converter="{StaticResource math}" ConverterParameter="x/y">
+                        <Binding ElementName="root" Path="ActualWidth" />
+                        <Binding ElementName="userControl" Path="Zoom" />
+                    </MultiBinding>
+                </Rectangle.Width>
+                <Rectangle.Height>
+                    <MultiBinding Converter="{StaticResource math}" ConverterParameter="x/y">
+                        <Binding ElementName="root" Path="ActualHeight" />
+                        <Binding ElementName="userControl" Path="Zoom" />
+                    </MultiBinding>
+                </Rectangle.Height>
+                <Canvas.Left>
+                    <MultiBinding Converter="{StaticResource math}" ConverterParameter="([3] - [3] / y) * z + ((x - [3])/2 - (x - [3])/(2 * y))">
+                        <Binding ElementName="root" Path="ActualWidth" />
+                        <Binding ElementName="userControl" Path="Zoom" />
+                        <Binding ElementName="userControl" Path="OffsetX" />
+                        <Binding ElementName="image" Path="ActualWidth" />
+                    </MultiBinding>
+                </Canvas.Left>
+                <Canvas.Top>
+                    <MultiBinding Converter="{StaticResource math}" ConverterParameter="([3] - [3] / y) * z + ((x - [3])/2 - (x - [3])/(2 * y))">
+                        <Binding ElementName="root" Path="ActualHeight" />
+                        <Binding ElementName="userControl" Path="Zoom" />
+                        <Binding ElementName="userControl" Path="OffsetY" />
+                        <Binding ElementName="image" Path="ActualHeight" />
+                    </MultiBinding>
+                </Canvas.Top>
+            </Rectangle>
+        </Canvas>
+    </Grid>
 </UserControl>

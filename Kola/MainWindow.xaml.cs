@@ -20,6 +20,45 @@ namespace Kola
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        /// <summary>
+        /// Width of the area, where comic page is displayed.
+        /// </summary>
+        public static double GetViewportWidth(DependencyObject obj)
+        {
+            return (double)obj.GetValue(ViewportWidthProperty);
+        }
+
+        public static void SetViewportWidth(DependencyObject obj, double value)
+        {
+            obj.SetValue(ViewportWidthProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for ViewportWidth.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ViewportWidthProperty =
+            DependencyProperty.RegisterAttached("ViewportWidth", typeof(double), typeof(MainWindow), new PropertyMetadata(0.0));
+
+        /// <summary>
+        /// Height of the area, where comic page is displayed.
+        /// </summary>
+        public static double GetViewportHeight(DependencyObject obj)
+        {
+            return (double)obj.GetValue(ViewportHeightProperty);
+        }
+
+        public static void SetViewportHeight(DependencyObject obj, double value)
+        {
+            obj.SetValue(ViewportHeightProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for ViewportHeight.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ViewportHeightProperty =
+            DependencyProperty.RegisterAttached("ViewportHeight", typeof(double), typeof(MainWindow), new PropertyMetadata(0.0));
+
+
+
+
+
         public Model.Model Model
         {
             get => model;

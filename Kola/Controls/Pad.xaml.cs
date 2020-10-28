@@ -62,6 +62,11 @@ namespace Kola.Controls
         public static readonly DependencyProperty OffsetYProperty =
             DependencyProperty.Register("OffsetY", typeof(double), typeof(Pad), new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
+        // Using a DependencyProperty as the backing store for ScreenHeight.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ScreenHeightProperty =
+            DependencyProperty.Register("ScreenHeight", typeof(double), typeof(Pad), new PropertyMetadata(0.0));
+
+
 
 
         public Pad()
@@ -76,11 +81,11 @@ namespace Kola.Controls
 
         private void AlignOffset(Point mousePos)
         {
-            double innerWidth = ActualWidth / Zoom;
-            double innerHeight = ActualHeight / Zoom;
+            double innerWidth = root.ActualWidth / Zoom;
+            double innerHeight = root.ActualHeight / Zoom;
 
-            double x = (mousePos.X - innerWidth / 2.0) / (ActualWidth - innerWidth);
-            double y = (mousePos.Y - innerHeight / 2.0) / (ActualHeight - innerHeight);
+            double x = (mousePos.X - innerWidth / 2.0) / (root.ActualWidth - innerWidth);
+            double y = (mousePos.Y - innerHeight / 2.0) / (root.ActualHeight - innerHeight);
 
             x = Clamp(x, 0, 1);
             y = Clamp(y, 0, 1);
@@ -92,7 +97,7 @@ namespace Kola.Controls
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             CaptureMouse();
-            AlignOffset(Mouse.GetPosition(this));
+            AlignOffset(Mouse.GetPosition(root));
         }
 
         protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
@@ -103,7 +108,7 @@ namespace Kola.Controls
         protected override void OnMouseMove(MouseEventArgs e)
         {
             if(e.LeftButton == MouseButtonState.Pressed)
-                AlignOffset(Mouse.GetPosition(this));
+                AlignOffset(Mouse.GetPosition(root));
         }
     }
 }
