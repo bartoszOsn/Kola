@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kola.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Kola
 {
@@ -69,6 +71,12 @@ namespace Kola
             }
         }
         public CommandFunctions Commands { get; private set; }
+
+        private Model.Model model;
+        private DispatcherTimer zoomDispatcher;
+        private Vector zoomOffsetSpeed = new Vector(0, 0);
+        private double zoomZoomSpeed = 0.0;
+
         public MainWindow(Model.Model model)
         {
             Model = model;
@@ -76,9 +84,20 @@ namespace Kola
             InitializeComponent();
             InitKeyboardGestures();
             WindowState = WindowState.Maximized;
+            zoomDispatcher = new DispatcherTimer();
+            zoomDispatcher.Interval = TimeSpan.FromMilliseconds(5);
+            zoomDispatcher.Tick += (s, e) =>
+            {
+                ProgressZoom();
+            };
+            zoomDispatcher.Start();
+        }
+        ~MainWindow()
+        {
+            zoomDispatcher.Stop();
         }
 
-        private Model.Model model;
+        
 
         private void RightPageChanger_Click(object sender, MouseButtonEventArgs e)
         {
@@ -103,6 +122,49 @@ namespace Kola
         {
             InputBindings.Add(new InputBinding(AppCommands.NextPage , new KeyGesture(Key.Right)));
             InputBindings.Add(new InputBinding(AppCommands.PreviousPage , new KeyGesture(Key.Left)));
+        }
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            KeyboardStateChanged(e);
+        }
+
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            KeyboardStateChanged(e);
+        }
+
+        private void KeyboardStateChanged(KeyEventArgs e)
+        {
+            if (e.Key == Key.A || e.Key == Key.W || e.Key == Key.S || e.Key == Key.D || e.Key == Key.R || e.Key == Key.F)
+            {
+                SetScroll();
+            }
+        }
+
+        private void SetScroll()
+        {
+            zoomOffsetSpeed = new Vector(0, 0);
+            zoomZoomSpeed = 0.0;
+            zoomOffsetSpeed.X += Keyboard.IsKeyDown(Key.A) ? -0.1 : 0;
+            zoomOffsetSpeed.X += Keyboard.IsKeyDown(Key.D) ? 0.1 : 0;
+            zoomOffsetSpeed.Y += Keyboard.IsKeyDown(Key.W) ? -0.1 : 0;
+            zoomOffsetSpeed.Y += Keyboard.IsKeyDown(Key.S) ? 0.1 : 0;
+
+            zoomZoomSpeed += Keyboard.IsKeyDown(Key.F) ? -0.06 : 0;
+            zoomZoomSpeed += Keyboard.IsKeyDown(Key.R) ? 0.06 : 0;
+
+            ProgressZoom();
+        }
+
+        private void ProgressZoom()
+        {
+            if (model.SelectedTab?.Zoom != null)
+            {
+                model.SelectedTab.Zoom.OffsetX = MathHelper.Clamp(model.SelectedTab.Zoom.OffsetX + zoomOffsetSpeed.X / model.SelectedTab.Zoom.ZoomLevel, 0, 1);
+                model.SelectedTab.Zoom.OffsetY = MathHelper.Clamp(model.SelectedTab.Zoom.OffsetY + zoomOffsetSpeed.Y / model.SelectedTab.Zoom.ZoomLevel, 0, 1);
+                model.SelectedTab.Zoom.ZoomLevel = MathHelper.Clamp(model.SelectedTab.Zoom.ZoomLevel + zoomZoomSpeed, 1, 10);
+            }
         }
     }
 }

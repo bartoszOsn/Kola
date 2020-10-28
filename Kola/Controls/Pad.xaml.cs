@@ -74,11 +74,6 @@ namespace Kola.Controls
             InitializeComponent();
         }
 
-        private double Clamp(double value, double min, double max)
-        {
-            return (value < min) ? min : ((value > max) ? max : value);
-        }
-
         private void AlignOffset(Point mousePos)
         {
             var a1 = (root.ActualWidth - image.ActualWidth) / 2;
@@ -96,8 +91,8 @@ namespace Kola.Controls
             double x = (mousePos.X - innerWidth / 2.0) / (b1 - innerWidth);
             double y = (mousePos.Y - innerHeight / 2.0) / (b2 - innerHeight);
 
-            x = Clamp(x, 0, 1);
-            y = Clamp(y, 0, 1);
+            x = Helpers.MathHelper.Clamp(x, 0, 1);
+            y = Helpers.MathHelper.Clamp(y, 0, 1);
 
             OffsetX = x;
             OffsetY = y;
