@@ -68,5 +68,42 @@ namespace Kola.Controls
         {
             InitializeComponent();
         }
+
+        private double Clamp(double value, double min, double max)
+        {
+            return (value < min) ? min : ((value > max) ? max : value);
+        }
+
+        private void AlignOffset(Point mousePos)
+        {
+            double innerWidth = ActualWidth / Zoom;
+            double innerHeight = ActualHeight / Zoom;
+
+            double x = (mousePos.X - innerWidth / 2.0) / (ActualWidth - innerWidth);
+            double y = (mousePos.Y - innerHeight / 2.0) / (ActualHeight - innerHeight);
+
+            x = Clamp(x, 0, 1);
+            y = Clamp(y, 0, 1);
+
+            OffsetX = x;
+            OffsetY = y;
+        }
+
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            CaptureMouse();
+            AlignOffset(Mouse.GetPosition(this));
+        }
+
+        protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
+        {
+            ReleaseMouseCapture();
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            if(e.LeftButton == MouseButtonState.Pressed)
+                AlignOffset(Mouse.GetPosition(this));
+        }
     }
 }
