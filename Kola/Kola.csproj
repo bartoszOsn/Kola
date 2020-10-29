@@ -268,7 +268,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CefSharp.Wpf">
-      <Version>84.4.10</Version>
+      <Version>85.3.130</Version>
     </PackageReference>
     <PackageReference Include="MathConverter">
       <Version>1.2.1.6</Version>
