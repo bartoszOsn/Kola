@@ -23,6 +23,7 @@ namespace Kola.Model
         private CancellationTokenSource cts;
         private int pageNumber;
         private ImageSource pageImage;
+        private Dictionary<int, ImageSource> pages = new Dictionary<int, ImageSource>();
 
         public override int PageNumber
         {
@@ -51,10 +52,11 @@ namespace Kola.Model
                 }
                 pageNumber = p;
                 Changed(nameof(PageNumber));
+                Changed(nameof(PageImage));
             }
         }
 
-        public override ImageSource PageImage { get { return pageImage; } }
+        public override ImageSource PageImage => pages.ContainsKey(PageNumber) ? pages[PageNumber] : null;
 
         public override void GainFocus()
         {
@@ -77,16 +79,31 @@ namespace Kola.Model
                 {
                     currentPage = pageNumber;
                     pageImage = null;
-                    Changed(nameof(PageImage));
                     cts.Token.ThrowIfCancellationRequested();
-                    ImageSource source = await GetImage(pageNumber, cts.Token);
-                    cts.Token.ThrowIfCancellationRequested();
-                    if (currentPage != pageNumber)
+                    
+                    for(int i = 0; i < Properties.Settings.Default.PagesInMemoryCount; i++)
                     {
-                        continue;
+                        cts.Token.ThrowIfCancellationRequested();
+                        ClearPages();
+                        int key = PageNumber + (i + 1) / 2 * (i % 2 == 0 ? -1 : 1);
+
+                        if (key < 0 || key >= PageCount)
+                            continue;
+
+                        ImageSource source = await GetImage(key, cts.Token);
+                        pages[key] = source;
+                        Console.WriteLine($"Generated page: [{key}]\tPageNumber: [{PageNumber}]\tAll pages: [{string.Join(", ", pages.Keys)}]");
+                        if(currentPage != PageNumber) // if page was changed, start again.
+                        {
+                            Console.WriteLine("Page Changed, I start again");
+                            i = -1;
+                            currentPage = PageNumber;
+                        }
+                        if(key == PageNumber)
+                        {
+                            Changed(nameof(PageImage));
+                        }
                     }
-                    pageImage = source;
-                    Changed(nameof(PageImage));
                     while (currentPage == pageNumber) //Wait while page is not changed.
                     {
                         cts.Token.ThrowIfCancellationRequested();
@@ -101,6 +118,28 @@ namespace Kola.Model
             catch(Exception e)
             {
                 throw e;
+            }
+        }
+
+        /// <summary>
+        /// Removes pages which are out of range.
+        /// </summary>
+        private void ClearPages()
+        {
+            int min = PageNumber + (int)-Math.Round(Properties.Settings.Default.PagesInMemoryCount / 2.0) - 1;
+            int max = PageNumber + (int)Math.Floor(Properties.Settings.Default.PagesInMemoryCount / 2.0);
+
+            if (min < 0)
+                min = 0;
+            if (max >= PageCount)
+                max = PageCount - 1;
+
+            foreach(var key in pages.Keys.ToArray())
+            {
+                if(key < min || key > max)
+                {
+                    pages.Remove(key);
+                }
             }
         }
 
