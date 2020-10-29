@@ -126,8 +126,10 @@ namespace Kola.Model
         /// </summary>
         private void ClearPages()
         {
-            int min = PageNumber + (int)-Math.Round(Properties.Settings.Default.PagesInMemoryCount / 2.0) - 1;
+            int min = PageNumber + (int)-Math.Round(Properties.Settings.Default.PagesInMemoryCount / 2.0) + 1;
             int max = PageNumber + (int)Math.Floor(Properties.Settings.Default.PagesInMemoryCount / 2.0);
+
+            Console.WriteLine($"Clearing, min: [{min}], max: [{max}]");
 
             if (min < 0)
                 min = 0;
