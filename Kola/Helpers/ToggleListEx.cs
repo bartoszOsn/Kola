@@ -11,21 +11,21 @@ namespace Kola
 {
     static class ToggleListEx
     {
+        const char separator = ';';
 
-
-        public static System.Collections.IList GetList(DependencyObject obj)
+        public static string GetList(DependencyObject obj)
         {
-            return (IList)obj.GetValue(ListProperty);
+            return (string)obj.GetValue(ListProperty);
         }
 
-        public static void SetList(DependencyObject obj, IList value)
+        public static void SetList(DependencyObject obj, string value)
         {
             obj.SetValue(ListProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for List.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ListProperty =
-            DependencyProperty.RegisterAttached("List", typeof(IList), typeof(ToggleListEx), new PropertyMetadata(null, ListChanged));
+            DependencyProperty.RegisterAttached("List", typeof(string), typeof(ToggleListEx), new PropertyMetadata(null, ListChanged));
 
 
 
@@ -49,7 +49,7 @@ namespace Kola
             toggle.Checked -= ToggleChecked;
             toggle.Unchecked -= ToggleUnchecked;
 
-            toggle.IsChecked = GetList(d).Contains(GetElement(d));
+            toggle.IsChecked = GetList(d).Split(separator).Contains(GetElement(d));
 
             toggle.Checked += ToggleChecked;
             toggle.Unchecked += ToggleUnchecked;
@@ -63,7 +63,7 @@ namespace Kola
                 toggle.Checked -= ToggleChecked;
                 toggle.Unchecked -= ToggleUnchecked;
 
-                toggle.IsChecked = GetList(d).Contains(GetElement(d));
+                toggle.IsChecked = GetList(d).Split(separator).Contains(GetElement(d));
 
                 toggle.Checked += ToggleChecked;
                 toggle.Unchecked += ToggleUnchecked;
@@ -72,18 +72,21 @@ namespace Kola
 
         private static void ToggleUnchecked(object sender, RoutedEventArgs e)
         {
-            IList list = GetList(sender as ToggleButton);
+            string list = GetList(sender as ToggleButton);
             string Element = GetElement(sender as ToggleButton);
 
-            while(list.Contains(Element))
-            {
-                list.Remove(Element);
-            }
+            list = string.Join(separator.ToString(), list.Split(separator).Where(t => t != Element));
+
+            SetList(sender as ToggleButton, list);
         }
 
         private static void ToggleChecked(object sender, RoutedEventArgs e)
         {
-            GetList(sender as ToggleButton).Add(GetElement(sender as ToggleButton));
+            string list = GetList(sender as ToggleButton);
+            string Element = GetElement(sender as ToggleButton);
+            list += separator + Element;
+
+            SetList(sender as ToggleButton, list);
         }
     }
 }

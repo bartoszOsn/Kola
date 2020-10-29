@@ -11,13 +11,14 @@
         public Settings() {
             // // To add event handlers for saving and changing settings, uncomment the lines below:
             //
-            this.SettingChanging += this.SettingChangingEventHandler;
+            this.PropertyChanged += SettingsPropertyChanged;
             //
             // this.SettingsSaving += this.SettingsSavingEventHandler;
             //
         }
-        
-        private void SettingChangingEventHandler(object sender, System.Configuration.SettingChangingEventArgs e) {
+
+        private void SettingsPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
             this.Save();
         }
         
