@@ -9,7 +9,7 @@ Comic books usually comes in following formats:
 ## Summary
 
 ### One window application
-if you two files in Windows Explorer, both of them will open in same application instance, but in separated tabs.
+if you open two files in Windows Explorer, both of them will open in same application instance, but in separated tabs.
 
 ### Magnifier
 ![Magnifier](./Docs/Magnifier.gif)
