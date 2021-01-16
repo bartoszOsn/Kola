@@ -8,11 +8,14 @@ Comic books usually comes in following formats:
 
 ## Summary
 
-Kola let's you have many comic books opened in many tabs, Let's you change pages and display progress. That's almost all, because Kola is minimalistic application.
+### One window application
+if you two files in Windows Explorer, both of them will open in same application instance, but in separated tabs.
 
-Next thing worth mentioning in magnifier.
-Click on image with left mouse button and drag it, and you will see magnifier which will magnify image ×2.
+### Magnifier
+![Magnifier](./Docs/Magnifier.gif)
 
-If you will then click right mouse button (with left button still pressed) you can change magnification factor.
+### Keyboard-controlled zoom
+![Zoom](./Docs/Zoom.gif)
 
-And, well, that's all.
+### multilingual Wikipedia/wiktionary widget
+![Wiki](./Docs/Wiki.gif)
